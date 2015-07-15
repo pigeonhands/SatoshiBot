@@ -28,11 +28,11 @@ namespace Satoshi_GUI
         private double wins = 0;
         private double loss = 0;
         private bool running = false;
-        private bool doubleOnLoss = false;
         private bool StopAfterWin = false;
         private bool ShowExceptionWindow = false;
         string lastResponce = string.Empty;
         string lastSent = string.Empty;
+        private decimal multiplyOnLoss = 1;
         public gamePanel()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace Satoshi_GUI
                     Bets = sf.BetAmmount;
                     BasebetCost = sf.BetCost / 1000000;
                     betCost = BasebetCost;
-                    doubleOnLoss = sf.DoubleOnLoss;
+                    multiplyOnLoss = sf.PercentOnLoss/100;
                     StopAfterWin = sf.StopAfterWin;
                     ShowExceptionWindow = sf.ShowExceptionWindow;
                 }
@@ -232,10 +232,10 @@ namespace Satoshi_GUI
                 if (bd.outcome == "bomb")
                 {
                     Log("Bomb. Loss: {0}", bd.stake);
-                    if (doubleOnLoss)
+                    if (multiplyOnLoss != 1)
                     {
-                        Log("Betting increced from {0} to {1}", betCost, betCost*2);
-                        betCost = betCost*2;
+                        Log("Betting increced from {0} to {1}", betCost, betCost * multiplyOnLoss);
+                        betCost = betCost * multiplyOnLoss;
                     }
                     //string url = string.Format("https://satoshimines.com/s/{0}/{1}/", bd.game_id, bd.random_string);
                     //Log("Url: {0}", url);

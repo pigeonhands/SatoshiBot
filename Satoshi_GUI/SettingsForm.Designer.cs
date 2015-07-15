@@ -40,11 +40,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.betCostNUD = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.doubleOnLossCheckbox = new System.Windows.Forms.CheckBox();
             this.stopAfterWinCheck = new System.Windows.Forms.CheckBox();
             this.showExWindow = new System.Windows.Forms.CheckBox();
+            this.precentOnLoss = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -161,7 +163,7 @@
             // 
             // betCostNUD
             // 
-            this.betCostNUD.Location = new System.Drawing.Point(91, 84);
+            this.betCostNUD.Location = new System.Drawing.Point(93, 84);
             this.betCostNUD.Maximum = new decimal(new int[] {
             1000000000,
             0,
@@ -185,16 +187,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Bet Cost:";
             // 
-            // doubleOnLossCheckbox
-            // 
-            this.doubleOnLossCheckbox.AutoSize = true;
-            this.doubleOnLossCheckbox.Location = new System.Drawing.Point(7, 111);
-            this.doubleOnLossCheckbox.Name = "doubleOnLossCheckbox";
-            this.doubleOnLossCheckbox.Size = new System.Drawing.Size(96, 17);
-            this.doubleOnLossCheckbox.TabIndex = 12;
-            this.doubleOnLossCheckbox.Text = "Double on loss";
-            this.doubleOnLossCheckbox.UseVisualStyleBackColor = true;
-            // 
             // stopAfterWinCheck
             // 
             this.stopAfterWinCheck.AutoSize = true;
@@ -208,21 +200,53 @@
             // showExWindow
             // 
             this.showExWindow.AutoSize = true;
-            this.showExWindow.Location = new System.Drawing.Point(128, 110);
+            this.showExWindow.Location = new System.Drawing.Point(128, 133);
             this.showExWindow.Name = "showExWindow";
             this.showExWindow.Size = new System.Drawing.Size(141, 17);
             this.showExWindow.TabIndex = 14;
             this.showExWindow.Text = "Show exception window";
             this.showExWindow.UseVisualStyleBackColor = true;
             // 
+            // precentOnLoss
+            // 
+            this.precentOnLoss.Location = new System.Drawing.Point(94, 108);
+            this.precentOnLoss.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.precentOnLoss.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.precentOnLoss.Name = "precentOnLoss";
+            this.precentOnLoss.Size = new System.Drawing.Size(174, 20);
+            this.precentOnLoss.TabIndex = 15;
+            this.precentOnLoss.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 110);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Percent on loss:";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 182);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.precentOnLoss);
             this.Controls.Add(this.showExWindow);
             this.Controls.Add(this.stopAfterWinCheck);
-            this.Controls.Add(this.doubleOnLossCheckbox);
             this.Controls.Add(this.betCostNUD);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -241,6 +265,7 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,8 +285,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown betCostNUD;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox doubleOnLossCheckbox;
         private System.Windows.Forms.CheckBox stopAfterWinCheck;
         private System.Windows.Forms.CheckBox showExWindow;
+        private System.Windows.Forms.NumericUpDown precentOnLoss;
+        private System.Windows.Forms.Label label5;
     }
 }
