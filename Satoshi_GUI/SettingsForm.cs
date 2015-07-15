@@ -16,8 +16,6 @@ namespace Satoshi_GUI
         public string PlayerHash { get; private set; }
         public int BetAmmount { get; private set; }
         public decimal BetCost { get; private set; }
-
-        public bool WriteLogToFile { get; private set; }
         public SettingsForm()
         {
             InitializeComponent();
@@ -54,7 +52,6 @@ namespace Satoshi_GUI
             PlayerHash = pHash.Text;
             BetAmmount = (int)numericUpDown1.Value;
             BetCost = betCostNUD.Value;
-            WriteLogToFile = checkBox1.Checked;
             if (PlayerHash == string.Empty)
             {
                 MessageBox.Show("Please enter a hash.");

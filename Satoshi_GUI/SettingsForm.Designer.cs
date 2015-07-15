@@ -40,7 +40,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.betCostNUD = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             this.SuspendLayout();
@@ -142,14 +141,14 @@
             this.numericUpDown1.Size = new System.Drawing.Size(176, 20);
             this.numericUpDown1.TabIndex = 8;
             this.numericUpDown1.Value = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
             0});
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 128);
+            this.button1.Location = new System.Drawing.Point(6, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(261, 23);
             this.button1.TabIndex = 9;
@@ -169,7 +168,7 @@
             this.betCostNUD.Size = new System.Drawing.Size(176, 20);
             this.betCostNUD.TabIndex = 11;
             this.betCostNUD.Value = new decimal(new int[] {
-            100,
+            30,
             0,
             0,
             0});
@@ -183,22 +182,11 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Bet Cost:";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 105);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(96, 17);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Write log to file";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 156);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(270, 141);
             this.Controls.Add(this.betCostNUD);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -236,6 +224,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown betCostNUD;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

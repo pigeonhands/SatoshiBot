@@ -28,73 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.winStats = new System.Windows.Forms.Label();
-            this.outputLog = new System.Windows.Forms.RichTextBox();
-            this.satoshi_grid1 = new Satoshi_GUI.Satoshi_grid();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // toolStrip1
             // 
-            this.button1.Location = new System.Drawing.Point(144, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(307, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(343, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // label2
+            // toolStripLabel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(141, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Win %:";
-            // 
-            // winStats
-            // 
-            this.winStats.AutoSize = true;
-            this.winStats.Location = new System.Drawing.Point(211, 32);
-            this.winStats.Name = "winStats";
-            this.winStats.Size = new System.Drawing.Size(118, 13);
-            this.winStats.TabIndex = 5;
-            this.winStats.Text = "0% | Wins: 0 | Losses: 0";
-            // 
-            // outputLog
-            // 
-            this.outputLog.Location = new System.Drawing.Point(144, 48);
-            this.outputLog.Name = "outputLog";
-            this.outputLog.ReadOnly = true;
-            this.outputLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.outputLog.Size = new System.Drawing.Size(307, 85);
-            this.outputLog.TabIndex = 8;
-            this.outputLog.Text = "";
-            // 
-            // satoshi_grid1
-            // 
-            this.satoshi_grid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.satoshi_grid1.Location = new System.Drawing.Point(3, 1);
-            this.satoshi_grid1.Name = "satoshi_grid1";
-            this.satoshi_grid1.Size = new System.Drawing.Size(132, 132);
-            this.satoshi_grid1.TabIndex = 0;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Text = "Add Game";
+            this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 133);
-            this.Controls.Add(this.outputLog);
-            this.Controls.Add(this.winStats);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.satoshi_grid1);
+            this.ClientSize = new System.Drawing.Size(343, 237);
+            this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "BahNahNah\'s SatoshiMines Bot";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,11 +69,9 @@
 
         #endregion
 
-        private Satoshi_grid satoshi_grid1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label winStats;
-        private System.Windows.Forms.RichTextBox outputLog;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+
     }
 }
 
