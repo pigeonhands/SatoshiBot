@@ -196,8 +196,15 @@ namespace Satoshi_GUI
                 else
                     BSta(true);
             }
-            catch
+            catch(Exception ex)
             {
+                if (ShowExceptionWindow)
+                {
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    {
+                        except.ShowDialog();
+                    }
+                }
                 Log("Failed to cashout.");
                 BSta(true);
             }
@@ -264,8 +271,15 @@ namespace Satoshi_GUI
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
+                if (ShowExceptionWindow)
+                {
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    {
+                        except.ShowDialog();
+                    }
+                }
                 Log("Failed bet.");
                 PrepRequest("https://satoshimines.com/action/checkboard.php");
                 int betSquare = getNextSquare();
