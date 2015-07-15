@@ -23,9 +23,9 @@ namespace Satoshi_GUI
             InitializeComponent();
             foreach (var dat in OtherData)
             {
-                richTextBox1.Text += OtherData.Keys + ": " + OtherData.Values + "\r\n";
+                richTextBox1.Text += dat.Key + ": " + dat.Value + "\r\n";
             }
-            richTextBox1.Text = ex;
+            richTextBox1.Text += ex;
         }
 
         private void ExceptionForm_Load(object sender, EventArgs e)
