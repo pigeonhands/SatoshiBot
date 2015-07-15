@@ -18,6 +18,16 @@ namespace Satoshi_GUI
             richTextBox1.Text = ex;
         }
 
+        public ExceptionForm(string ex, Dictionary<string, string> OtherData)
+        {
+            InitializeComponent();
+            foreach (var dat in OtherData)
+            {
+                richTextBox1.Text += OtherData.Keys + ": " + OtherData.Values + "\r\n";
+            }
+            richTextBox1.Text = ex;
+        }
+
         private void ExceptionForm_Load(object sender, EventArgs e)
         {
 

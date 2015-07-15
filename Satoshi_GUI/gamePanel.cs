@@ -30,6 +30,7 @@ namespace Satoshi_GUI
         private bool doubleOnLoss = false;
         private bool StopAfterWin = false;
         private bool ShowExceptionWindow = false;
+        string lastResponce = string.Empty;
         public gamePanel()
         {
             InitializeComponent();
@@ -172,7 +173,8 @@ namespace Satoshi_GUI
                 HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);
                 using (StreamReader sr = new StreamReader(httpResponce.GetResponseStream()))
                 {
-                    cd = Deserialize<CashOutData>(sr.ReadToEnd());
+                    lastResponce = sr.ReadToEnd();
+                    cd = Deserialize<CashOutData>(lastResponce);
                 }
                 if (cd == null || cd.status != "success")
                     throw new Exception();
@@ -298,7 +300,8 @@ namespace Satoshi_GUI
                 HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);
                 using (StreamReader sr = new StreamReader(httpResponce.GetResponseStream()))
                 {
-                    Data = Deserialize<GameData>(sr.ReadToEnd());
+                    lastResponce = sr.ReadToEnd();
+                    Data = Deserialize<GameData>(lastResponce);
                 }
                 if (Data == null)
                     throw new Exception("Deserialize failed, object is null.");
@@ -318,7 +321,11 @@ namespace Satoshi_GUI
             {
                 if (ShowExceptionWindow)
                 {
-                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString(), new Dictionary<string,string>
+                    {
+                        {"BetBase", BasebetCost.ToString()},
+                        {"LastResounce", lastResponce}
+                    }))
                     {
                         except.ShowDialog();
                     }

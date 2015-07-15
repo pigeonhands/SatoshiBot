@@ -12,9 +12,9 @@ namespace Satoshi_GUI
         public int id { get; set; }
         public string game_hash { get; set; }
         public string secret { get; set; }
-        public int bet { get; set; }
-        public int stake { get; set; }
-        public int next { get; set; }
+        public long bet { get; set; }
+        public long stake { get; set; }
+        public long next { get; set; }
         public string betNumber { get; set; }
         public string gametype { get; set; }
         public int num_mines { get; set; }
