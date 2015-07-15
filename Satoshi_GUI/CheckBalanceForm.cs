@@ -29,7 +29,6 @@ namespace Satoshi_GUI
                 BalanceData bd = Deserialize<BalanceData>(resp);
                 if (bd == null || bd.status != "success")
                     throw new Exception();
-
                 balanceLabel.Text = bd.balance.ToString();
             }
             catch

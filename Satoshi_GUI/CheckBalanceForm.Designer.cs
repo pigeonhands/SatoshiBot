@@ -56,14 +56,14 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(14, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Balance (bits):";
+            this.label2.Text = "Balance (BTC):";
             // 
             // balanceLabel
             // 
             this.balanceLabel.AutoSize = true;
-            this.balanceLabel.Location = new System.Drawing.Point(69, 35);
+            this.balanceLabel.Location = new System.Drawing.Point(94, 35);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(16, 13);
             this.balanceLabel.TabIndex = 3;
