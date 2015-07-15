@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.doubleOnLossCheckbox = new System.Windows.Forms.CheckBox();
             this.stopAfterWinCheck = new System.Windows.Forms.CheckBox();
+            this.showExWindow = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             this.SuspendLayout();
@@ -204,11 +205,22 @@
             this.stopAfterWinCheck.Text = "Stop after win";
             this.stopAfterWinCheck.UseVisualStyleBackColor = true;
             // 
+            // showExWindow
+            // 
+            this.showExWindow.AutoSize = true;
+            this.showExWindow.Location = new System.Drawing.Point(128, 110);
+            this.showExWindow.Name = "showExWindow";
+            this.showExWindow.Size = new System.Drawing.Size(141, 17);
+            this.showExWindow.TabIndex = 14;
+            this.showExWindow.Text = "Show exception window";
+            this.showExWindow.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 182);
+            this.Controls.Add(this.showExWindow);
             this.Controls.Add(this.stopAfterWinCheck);
             this.Controls.Add(this.doubleOnLossCheckbox);
             this.Controls.Add(this.betCostNUD);
@@ -250,5 +262,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox doubleOnLossCheckbox;
         private System.Windows.Forms.CheckBox stopAfterWinCheck;
+        private System.Windows.Forms.CheckBox showExWindow;
     }
 }

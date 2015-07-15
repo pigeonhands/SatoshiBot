@@ -18,6 +18,7 @@ namespace Satoshi_GUI
         public decimal BetCost { get; private set; }
         public bool DoubleOnLoss { get; private set; }
         public bool StopAfterWin { get; private set; }
+        public bool ShowExceptionWindow { get; private set; }
         public SettingsForm()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace Satoshi_GUI
             BetAmmount = (int)numericUpDown1.Value;
             BetCost = betCostNUD.Value;
             StopAfterWin = stopAfterWinCheck.Checked;
+            ShowExceptionWindow = showExWindow.Checked;
             if (PlayerHash == string.Empty)
             {
                 MessageBox.Show("Please enter a hash.");

@@ -18,6 +18,7 @@ namespace Satoshi_GUI
         public string betNumber { get; set; }
         public string gametype { get; set; }
         public int num_mines { get; set; }
+        public string message { get; set; }
     }
     public class GameData2
     {

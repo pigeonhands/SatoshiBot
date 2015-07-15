@@ -29,6 +29,7 @@ namespace Satoshi_GUI
         private bool running = false;
         private bool doubleOnLoss = false;
         private bool StopAfterWin = false;
+        private bool ShowExceptionWindow = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace Satoshi_GUI
                     betCost = BasebetCost;
                     doubleOnLoss = sf.DoubleOnLoss;
                     StopAfterWin = sf.StopAfterWin;
+                    ShowExceptionWindow = sf.ShowExceptionWindow;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -284,8 +286,11 @@ namespace Satoshi_GUI
                 {
                     Data = Deserialize<GameData>(sr.ReadToEnd());
                 }
-                if (Data == null || Data.status != "success")
-                    throw new Exception();
+                if (Data == null)
+                    throw new Exception("Deserialize failed, object is null.");
+                if (Data.status != "success")
+                    throw new Exception("Json Error: " + Data.message);
+                    
                 Log("Game Started");
                 Log("Type: {0} | Bombs: {1}", Data.gametype, Data.num_mines);
                 int betSquare = getNextSquare();
@@ -295,8 +300,15 @@ namespace Satoshi_GUI
                     Bcodes("game_hash={0}&guess={1}&v04=1", Data.game_hash, betSquare);
                 getPostResponce(betResponce, EndBetResponce);
             }
-            catch
+            catch(Exception ex)
             {
+                if (ShowExceptionWindow)
+                {
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    {
+                        except.ShowDialog();
+                    }
+                }
                 Log("Failed to start new game.");
                 BSta(true);
             }
@@ -308,7 +320,11 @@ namespace Satoshi_GUI
             {
                 button1.Enabled = en;
                 if (en)
+                {
                     button1.Text = "Start";
+                    running = false;
+                }
+
             });
 
         }
