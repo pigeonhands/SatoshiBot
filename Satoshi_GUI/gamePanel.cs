@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Net;
+using System.Globalization;
 
 namespace Satoshi_GUI
 {
@@ -60,7 +61,7 @@ namespace Satoshi_GUI
                 Log("Starting...");
 
                 PrepRequest("https://satoshimines.com/action/newgame.php");
-                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost,
+                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
                     Bombs);
                 running = true;
                 button1.Text = "Stop after game.";
@@ -195,7 +196,7 @@ namespace Satoshi_GUI
                 int betSquare = getNextSquare();
                 PrepRequest("https://satoshimines.com/action/newgame.php");
                 byte[] newGameresponce =
-                        Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost,
+                        Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
                             Bombs);
                 if (running)
                     getPostResponce(newGameresponce, EndNewGameResponce);
@@ -243,7 +244,7 @@ namespace Satoshi_GUI
                     bombSquare(bd.guess);
                     PrepRequest("https://satoshimines.com/action/newgame.php");
                     byte[] newGameresponce =
-                            Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost,
+                            Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
                                     Bombs);
                     if (running)
                         getPostResponce(newGameresponce, EndNewGameResponce);
