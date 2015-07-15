@@ -283,7 +283,6 @@ namespace Satoshi_GUI
                     throw new Exception();
                 Log("Game Started");
                 Log("Type: {0} | Bombs: {1}", Data.gametype, Data.num_mines);
-                Log("Player Hash: {0}", Data.secret);
                 int betSquare = getNextSquare();
                 Log("betting square {0}", betSquare);
                 PrepRequest("https://satoshimines.com/action/checkboard.php");
