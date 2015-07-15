@@ -18,7 +18,7 @@ namespace Satoshi_GUI
         private gamePanel _initGamepanel;
         private int toolstripOffset = 25;
         int tbOffset = 33;
-        bool hasHadHor = false;
+        bool DontExtend = false;
         private int horIndex = 1;
         private int vertIndex = 0;
         public Form1()
@@ -38,11 +38,10 @@ namespace Satoshi_GUI
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
-            if (horIndex != 2)
+            if (horIndex != 2)//This number is how namy game panels wide it will be. Default is 2
             {
-                if (!hasHadHor)
-                    this.Width = (_initGamepanel.Width*2) + 10;
-                hasHadHor = true;
+                if (!DontExtend)
+                    this.Width = (_initGamepanel.Width * (horIndex + 1)) + 10;
                 gamePanel ngp = new gamePanel();
                 ngp.Parent = this;
                 ngp.Location = new Point(ngp.Width * horIndex,
@@ -52,6 +51,7 @@ namespace Satoshi_GUI
             }
             else
             {
+                DontExtend = true;
                 horIndex = 0;
                 vertIndex++;
                 this.Height = (_initGamepanel.Height * (vertIndex + 1)) + tbOffset + toolstripOffset;
