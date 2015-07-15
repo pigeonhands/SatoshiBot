@@ -36,6 +36,21 @@ namespace Satoshi_GUI
             this.Width = _initGamepanel.Width + 10;
         }
 
+        private  async void HandleBalance()
+        {
+            
+        }
+
+        private async Task<string> GetBalance(string SecretKey)
+        {
+            string Parameters = string.Format("secret={0}", SecretKey);
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                return await wc.UploadStringTaskAsync(new Uri("https://satoshimines.com/action/refresh_balance.php"), "POST", Parameters);
+            }
+        }
+
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
             if (horIndex != 2)//This number is how many game panels wide it will be. Default is 2

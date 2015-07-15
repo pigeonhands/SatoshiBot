@@ -28,6 +28,7 @@ namespace Satoshi_GUI
         private double loss = 0;
         private bool running = false;
         private bool doubleOnLoss = false;
+        private bool StopAfterWin = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace Satoshi_GUI
                     BasebetCost = sf.BetCost / 1000000;
                     betCost = BasebetCost;
                     doubleOnLoss = sf.DoubleOnLoss;
+                    StopAfterWin = sf.StopAfterWin;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -176,6 +178,11 @@ namespace Satoshi_GUI
                 string url = string.Format("https://satoshimines.com/s/{0}/{1}/", cd.game_id, cd.random_string);
                 Log("Url: {0}", url);
                 AddWin();
+                if (StopAfterWin)
+                {
+                    Log("Stop After win is enabled... Stoping...");
+                    running = false;
+                }
                 Log("");
                 int betSquare = getNextSquare();
                 PrepRequest("https://satoshimines.com/action/newgame.php");

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Satoshi_GUI
 {
-    public class GameData2
+    public class GameData
     {
         public string status { get; set; }
         public int id { get; set; }
@@ -19,7 +19,7 @@ namespace Satoshi_GUI
         public string gametype { get; set; }
         public int num_mines { get; set; }
     }
-    public class GameData
+    public class GameData2
     {
         public string status { get; set; }
         public int id { get; set; }
