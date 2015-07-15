@@ -247,9 +247,9 @@
             this.useStratCheck.AutoSize = true;
             this.useStratCheck.Location = new System.Drawing.Point(5, 1);
             this.useStratCheck.Name = "useStratCheck";
-            this.useStratCheck.Size = new System.Drawing.Size(90, 17);
+            this.useStratCheck.Size = new System.Drawing.Size(87, 17);
             this.useStratCheck.TabIndex = 17;
-            this.useStratCheck.Text = "Use Stratergy";
+            this.useStratCheck.Text = "Use Strategy";
             this.useStratCheck.UseVisualStyleBackColor = true;
             this.useStratCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -294,6 +294,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SettingsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).EndInit();

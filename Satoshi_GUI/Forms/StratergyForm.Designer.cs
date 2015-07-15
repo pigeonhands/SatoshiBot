@@ -28,16 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.startergyGrid1 = new Satoshi_GUI.Controls.StartergyGrid();
             this.button1 = new System.Windows.Forms.Button();
+            this.startergyGrid1 = new Satoshi_GUI.Controls.StartergyGrid();
             this.SuspendLayout();
-            // 
-            // startergyGrid1
-            // 
-            this.startergyGrid1.Location = new System.Drawing.Point(2, 0);
-            this.startergyGrid1.Name = "startergyGrid1";
-            this.startergyGrid1.Size = new System.Drawing.Size(231, 233);
-            this.startergyGrid1.TabIndex = 0;
             // 
             // button1
             // 
@@ -49,6 +42,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // startergyGrid1
+            // 
+            this.startergyGrid1.Location = new System.Drawing.Point(2, 0);
+            this.startergyGrid1.Name = "startergyGrid1";
+            this.startergyGrid1.Size = new System.Drawing.Size(231, 233);
+            this.startergyGrid1.TabIndex = 0;
+            // 
             // StratergyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -58,7 +58,8 @@
             this.Controls.Add(this.startergyGrid1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "StratergyForm";
-            this.Text = "Stratergy";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Strategy";
             this.Load += new System.EventHandler(this.StratergyForm_Load);
             this.ResumeLayout(false);
 
