@@ -38,7 +38,7 @@ namespace Satoshi_GUI
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
-            if (horIndex != 2)//This number is how namy game panels wide it will be. Default is 2
+            if (horIndex != 2)//This number is how many game panels wide it will be. Default is 2
             {
                 if (!DontExtend)
                     this.Width = (_initGamepanel.Width * (horIndex + 1)) + 10;
