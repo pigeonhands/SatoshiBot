@@ -16,6 +16,7 @@ namespace Satoshi_GUI
         public string PlayerHash { get; private set; }
         public int BetAmmount { get; private set; }
         public decimal BetCost { get; private set; }
+        public bool DoubleOnLoss { get; private set; }
         public SettingsForm()
         {
             InitializeComponent();

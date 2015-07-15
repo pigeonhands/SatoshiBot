@@ -18,6 +18,7 @@ namespace Satoshi_GUI
         private string PlayerHash;
         private int Bets = 1;
         private int Bombs = 3;
+        private decimal BasebetCost = 0;
         private decimal betCost = 0;
         private GameData Data;
         private Random r = new Random();
@@ -26,6 +27,7 @@ namespace Satoshi_GUI
         private double wins = 0;
         private double loss = 0;
         private bool running = false;
+        private bool doubleOnLoss = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -44,7 +46,9 @@ namespace Satoshi_GUI
                     PlayerHash = sf.PlayerHash;
                     Bombs = sf.BombCount;
                     Bets = sf.BetAmmount;
-                    betCost = sf.BetCost / 1000000;
+                    BasebetCost = sf.BetCost / 1000000;
+                    betCost = BasebetCost;
+                    doubleOnLoss = sf.DoubleOnLoss;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -205,6 +209,11 @@ namespace Satoshi_GUI
                 if (bd.outcome == "bomb")
                 {
                     Log("Bomb. Loss: {0}", bd.stake);
+                    if (doubleOnLoss)
+                    {
+                        Log("Betting increced from {0} to {1}", betCost, betCost*2);
+                        betCost = betCost*2;
+                    }
                     //string url = string.Format("https://satoshimines.com/s/{0}/{1}/", bd.game_id, bd.random_string);
                     //Log("Url: {0}", url);
                     AddLoss();
@@ -227,6 +236,7 @@ namespace Satoshi_GUI
                     currentBetStreak++;
                     if (currentBetStreak >= Bets)
                     {
+                        betCost = BasebetCost;
                         Log("Cashing out...");
                         PrepRequest("https://satoshimines.com/action/cashout.php");
                         byte[] cashoutResponce =

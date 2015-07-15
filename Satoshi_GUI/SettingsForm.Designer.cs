@@ -40,6 +40,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.betCostNUD = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.doubleOnLossCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             this.SuspendLayout();
@@ -148,7 +149,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 110);
+            this.button1.Location = new System.Drawing.Point(6, 134);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(261, 23);
             this.button1.TabIndex = 9;
@@ -182,11 +183,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Bet Cost:";
             // 
+            // doubleOnLossCheckbox
+            // 
+            this.doubleOnLossCheckbox.AutoSize = true;
+            this.doubleOnLossCheckbox.Location = new System.Drawing.Point(7, 111);
+            this.doubleOnLossCheckbox.Name = "doubleOnLossCheckbox";
+            this.doubleOnLossCheckbox.Size = new System.Drawing.Size(96, 17);
+            this.doubleOnLossCheckbox.TabIndex = 12;
+            this.doubleOnLossCheckbox.Text = "Double on loss";
+            this.doubleOnLossCheckbox.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 141);
+            this.ClientSize = new System.Drawing.Size(270, 161);
+            this.Controls.Add(this.doubleOnLossCheckbox);
             this.Controls.Add(this.betCostNUD);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -224,5 +236,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown betCostNUD;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox doubleOnLossCheckbox;
     }
 }
