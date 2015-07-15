@@ -75,4 +75,10 @@ namespace Satoshi_GUI
         public string random_string { get; set; }
         public string game_id { get; set; }
     }
+
+    public class BalanceData
+    {
+        public string status { get; set; }
+        public string balance { get; set; }
+    }
 }

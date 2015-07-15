@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckBalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckBalanceForm.Designer.cs">
+      <DependentUpon>CheckBalanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CheckBalanceForm.resx">
+      <DependentUpon>CheckBalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExceptionForm.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
     </EmbeddedResource>
