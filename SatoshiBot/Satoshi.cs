@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,7 +34,7 @@ namespace SatoshiBot
                 PrepRequest("https://satoshimines.com/action/newgame.php");
                 byte[] newGameresponce =
                     Encoding.UTF8.GetBytes(
-                        string.Format("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betSatoshi / 1000000,
+                        string.Format("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, (betSatoshi / 1000000).ToString("0.000000", new CultureInfo("en-US")),
                             mines));
                 string responce = getPostResponce(newGameresponce);
                 Data = Deserialize<GameData>(WebUtility.HtmlDecode(responce));
@@ -101,7 +102,7 @@ namespace SatoshiBot
                 PrepRequest("https://satoshimines.com/action/full_cashout.php");   
                 byte[] WithdrawResponce =
                     Encoding.UTF8.GetBytes(
-                        string.Format("secret={0}&payto_address={1}&amount={2}", PlayerHash, BTCAddr, AmmountSatoshi / 1000000));
+                        string.Format("secret={0}&payto_address={1}&amount={2}", PlayerHash, BTCAddr, (AmmountSatoshi / 1000000).ToString("0.000000", new CultureInfo("en-US"))));
                 getPostResponce(WithdrawResponce);
             }
             catch

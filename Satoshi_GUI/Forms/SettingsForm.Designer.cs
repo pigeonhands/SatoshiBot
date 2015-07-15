@@ -36,7 +36,7 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numberofBets = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.betCostNUD = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,9 +44,13 @@
             this.showExWindow = new System.Windows.Forms.CheckBox();
             this.precentOnLoss = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.useStratCheck = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.stratergyDisplay1 = new Satoshi_GUI.Controls.stratergyDisplay();
+            ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -129,23 +133,23 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Number of bets:";
             // 
-            // numericUpDown1
+            // numberofBets
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(92, 58);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numberofBets.Location = new System.Drawing.Point(92, 58);
+            this.numberofBets.Maximum = new decimal(new int[] {
             24,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numberofBets.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(176, 20);
-            this.numericUpDown1.TabIndex = 8;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numberofBets.Name = "numberofBets";
+            this.numberofBets.Size = new System.Drawing.Size(176, 20);
+            this.numberofBets.TabIndex = 8;
+            this.numberofBets.Value = new decimal(new int[] {
             3,
             0,
             0,
@@ -153,7 +157,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 156);
+            this.button1.Location = new System.Drawing.Point(6, 244);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(261, 23);
             this.button1.TabIndex = 9;
@@ -238,11 +242,40 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Percent on loss:";
             // 
+            // useStratCheck
+            // 
+            this.useStratCheck.AutoSize = true;
+            this.useStratCheck.Location = new System.Drawing.Point(5, 1);
+            this.useStratCheck.Name = "useStratCheck";
+            this.useStratCheck.Size = new System.Drawing.Size(90, 17);
+            this.useStratCheck.TabIndex = 17;
+            this.useStratCheck.Text = "Use Stratergy";
+            this.useStratCheck.UseVisualStyleBackColor = true;
+            this.useStratCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.stratergyDisplay1);
+            this.groupBox2.Controls.Add(this.useStratCheck);
+            this.groupBox2.Location = new System.Drawing.Point(7, 156);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(101, 82);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            // 
+            // stratergyDisplay1
+            // 
+            this.stratergyDisplay1.Location = new System.Drawing.Point(21, 17);
+            this.stratergyDisplay1.Name = "stratergyDisplay1";
+            this.stratergyDisplay1.Size = new System.Drawing.Size(58, 59);
+            this.stratergyDisplay1.TabIndex = 19;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 182);
+            this.ClientSize = new System.Drawing.Size(272, 268);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.precentOnLoss);
             this.Controls.Add(this.showExWindow);
@@ -250,7 +283,7 @@
             this.Controls.Add(this.betCostNUD);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numberofBets);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
@@ -263,9 +296,11 @@
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,7 +316,7 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numberofBets;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown betCostNUD;
         private System.Windows.Forms.Label label4;
@@ -289,5 +324,8 @@
         private System.Windows.Forms.CheckBox showExWindow;
         private System.Windows.Forms.NumericUpDown precentOnLoss;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox useStratCheck;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private Controls.stratergyDisplay stratergyDisplay1;
     }
 }

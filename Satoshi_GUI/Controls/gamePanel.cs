@@ -33,6 +33,9 @@ namespace Satoshi_GUI
         string lastResponce = string.Empty;
         string lastSent = string.Empty;
         private decimal multiplyOnLoss = 1;
+        private bool useStratergy = false;
+        private int[] StratergySquares;
+        private int stratergyIndex = 0;
         public gamePanel()
         {
             InitializeComponent();
@@ -56,6 +59,9 @@ namespace Satoshi_GUI
                     multiplyOnLoss = sf.PercentOnLoss/100;
                     StopAfterWin = sf.StopAfterWin;
                     ShowExceptionWindow = sf.ShowExceptionWindow;
+                    useStratergy = sf.UseStrat;
+                    StratergySquares = sf.StratergySquares;
+                    stratergyIndex = 0;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -129,6 +135,18 @@ namespace Satoshi_GUI
 
         public int getNextSquare()
         {
+            if (useStratergy)
+            {
+                lock (this)
+                {
+                    
+                    if ((StratergySquares.Length == 1) || (stratergyIndex > StratergySquares.Length - 2))
+                        stratergyIndex = 0;
+                    else
+                        stratergyIndex++;
+                    return StratergySquares[stratergyIndex] + 1;
+                }
+            }
             int i = r.Next(1, 26);
             this.Invoke((MethodInvoker)delegate()
             {

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace Satoshi_GUI
 {
+    
+
     public partial class SettingsForm : Form
     {
         public int BombCount { get; private set; }
@@ -19,6 +21,8 @@ namespace Satoshi_GUI
         public decimal PercentOnLoss { get; private set; }
         public bool StopAfterWin { get; private set; }
         public bool ShowExceptionWindow { get; private set; }
+        public int[] StratergySquares { get; private set; }
+        public bool UseStrat { get; private set; }
         public SettingsForm()
         {
             InitializeComponent();
@@ -53,7 +57,9 @@ namespace Satoshi_GUI
         private void button1_Click(object sender, EventArgs e)
         {
             PlayerHash = pHash.Text;
-            BetAmmount = (int)numericUpDown1.Value;
+            BetAmmount = (int)numberofBets.Value;
+            if (UseStrat)
+                BetAmmount = StratergySquares.Length;
             BetCost = betCostNUD.Value;
             StopAfterWin = stopAfterWinCheck.Checked;
             ShowExceptionWindow = showExWindow.Checked;
@@ -64,6 +70,46 @@ namespace Satoshi_GUI
                 return;
             }
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (StratergyForm sf = new StratergyForm())
+            {
+                sf.ShowDialog();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (useStratCheck.Checked)
+            {
+                using (StratergyForm sf = new StratergyForm())
+                {
+                    if (sf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        StratergySquares = sf.StratergyArray;
+                        UseStrat = StratergySquares != null && StratergySquares.Length > 0;
+                        if (UseStrat)
+                        {
+                            foreach (int sv in StratergySquares)
+                                stratergyDisplay1.Squares[sv].Glow();
+                        }
+                        else
+                        {
+                            useStratCheck.Checked = false;
+                            stratergyDisplay1.Reset();
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                UseStrat = false;
+                stratergyDisplay1.Reset();
+            }
+            numberofBets.Enabled = !UseStrat;
         }
     }
 }

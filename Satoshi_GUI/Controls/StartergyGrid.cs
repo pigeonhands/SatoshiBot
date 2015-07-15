@@ -8,55 +8,61 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Satoshi_GUI
+namespace Satoshi_GUI.Controls
 {
-    public partial class Satoshi_grid : UserControl
+    
+    public partial class StartergyGrid : UserControl
     {
-        private int dist = 26;
+        private int dist = 46;
         private int startwallDist = 3;
-        public GridSquare[] Squares { get; private set; }
-
-        private void Satoshi_grid_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        public Satoshi_grid()
+        public StratergySquare[] Squares;
+        public StartergyGrid()
         {
             InitializeComponent();
-            Squares = new GridSquare[25];
+        }
+
+        private void StartergyGrid_Load(object sender, EventArgs e)
+        {
+            Squares = new StratergySquare[25];
             int index = 0;
             for (int Row = 0; Row < 5; Row++)
             {
                 for (int Col = 0; Col < 5; Col++)
                 {
                     Squares[index] =
-                        new GridSquare(this, new Point(((dist) * Col) +startwallDist, dist * Row + startwallDist));
+                        new StratergySquare(this, new Point(((dist) * Col) + startwallDist, dist * Row + startwallDist));
                     index++;
                 }
             }
         }
-        public void Reset()
-        {
-            foreach (GridSquare s in Squares)
-                s.Dim();
-        }
-
     }
 
-    public class GridSquare
+    public class StratergySquare
     {
         private Panel _pObj;
+        public int DrawNum { get; set; }
         public bool IsGlowing { get; private set; }
-        public GridSquare(Control parent, Point location)
+        public StratergySquare(Control parent, Point location)
         {
+            DrawNum = 0;
             _pObj = new Panel();
-            _pObj.Size = new Size(20, 20);
+            _pObj.Size = new Size(40, 40);
             _pObj.BackColor = Color.Gray;
             _pObj.Parent = parent;
             _pObj.Location = location;
+            _pObj.AutoSize = true;
             _pObj.Show();
+            _pObj.Click += _pObj_Click;
+
             IsGlowing = false;
+        }
+
+        void _pObj_Click(object sender, EventArgs e)
+        {
+            if (IsGlowing)
+                Dim();
+            else
+                Glow();
         }
 
         public void Glow()
