@@ -180,7 +180,7 @@ namespace Satoshi_GUI
                 }
                 if (cd == null || cd.status != "success")
                     throw new Exception();
-                Log("Cashed out {0} bits", cd.win);
+                Log(cd.message);
                 string url = string.Format("https://satoshimines.com/s/{0}/{1}/", cd.game_id, cd.random_string);
                 Log("Url: {0}", url);
                 AddWin();
