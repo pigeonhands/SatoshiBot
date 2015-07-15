@@ -31,6 +31,7 @@ namespace Satoshi_GUI
         private bool StopAfterWin = false;
         private bool ShowExceptionWindow = false;
         string lastResponce = string.Empty;
+        string lastSent = string.Empty;
         public gamePanel()
         {
             InitializeComponent();
@@ -119,7 +120,10 @@ namespace Satoshi_GUI
         }
         public byte[] Bcodes(string c, params object[] formatting)
         {
-            return Encoding.UTF8.GetBytes(string.Format(c, formatting));
+            byte[] ret = Encoding.UTF8.GetBytes(string.Format(c, formatting));
+            formatting[0] = "ProtectHash";
+            lastSent = string.Format(c, formatting);
+            return ret;
         }
 
         public int getNextSquare()
@@ -324,7 +328,8 @@ namespace Satoshi_GUI
                     using (ExceptionForm except = new ExceptionForm(ex.ToString(), new Dictionary<string,string>
                     {
                         {"BetBase", BasebetCost.ToString()},
-                        {"LastResounce", lastResponce}
+                        {"LastResounce", lastResponce},
+                        {"LastSent", lastSent}
                     }))
                     {
                         except.ShowDialog();
