@@ -14,8 +14,11 @@ using System.Globalization;
 
 namespace Satoshi_GUI
 {
+    public delegate void OnRemoveCallback(gamePanel sender);
     public partial class gamePanel : UserControl
     {
+        public event OnRemoveCallback OnRemove;
+
         private string PlayerHash;
         private int Bets = 1;
         private int Bombs = 3;
@@ -36,6 +39,7 @@ namespace Satoshi_GUI
         private bool useStratergy = false;
         private int[] StratergySquares;
         private int stratergyIndex = 0;
+        public bool showGameBombs = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -62,6 +66,7 @@ namespace Satoshi_GUI
                     useStratergy = sf.UseStrat;
                     StratergySquares = sf.StratergySquares;
                     stratergyIndex = 0;
+                    showGameBombs = sf.ShowGameBombs;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -171,6 +176,15 @@ namespace Satoshi_GUI
                 satoshi_grid1.Squares[s - 1].Bomb();
             });
         }
+        public void FadebombSquare(int s)
+        {
+            this.Invoke((MethodInvoker)delegate()
+            {
+                if (satoshi_grid1.Squares[s - 1].IsGlowing)
+                    return;
+                satoshi_grid1.Squares[s - 1].FadeBomb();
+            });
+        }
 
         public void clearSquares()
         {
@@ -201,6 +215,16 @@ namespace Satoshi_GUI
                 }
                 if (cd == null || cd.status != "success")
                     throw new Exception();
+                if (showGameBombs)
+                {
+                    string[] bmbz = cd.mines.Split('-');
+                    foreach (string s in bmbz)
+                    {
+                        int bS;
+                        if (int.TryParse(s, out bS))
+                            FadebombSquare(bS);
+                    }
+                }
                 Log(cd.message);
                 string url = string.Format("https://satoshimines.com/s/{0}/{1}/", cd.game_id, cd.random_string);
                 Log("Url: {0}", url);
@@ -260,6 +284,16 @@ namespace Satoshi_GUI
                     AddLoss();
                     Log("");
                     bombSquare(bd.guess);
+                    if (showGameBombs)
+                    {
+                        string[] bmbz = bd.bombs.Split('-');
+                        foreach (string s in bmbz)
+                        {
+                            int bS;
+                            if (int.TryParse(s, out bS))
+                                FadebombSquare(bS);
+                        }
+                    }
                     PrepRequest("https://satoshimines.com/action/newgame.php");
                     byte[] newGameresponce =
                             Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
@@ -420,6 +454,12 @@ namespace Satoshi_GUI
         private void gamePanel_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (OnRemove != null)
+                OnRemove(this);
         }
     }
 }

@@ -47,6 +47,7 @@
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.stratergyDisplay1 = new Satoshi_GUI.Controls.stratergyDisplay();
+            this.showGBombsCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -270,11 +271,22 @@
             this.stratergyDisplay1.Size = new System.Drawing.Size(58, 59);
             this.stratergyDisplay1.TabIndex = 19;
             // 
+            // showGBombsCheck
+            // 
+            this.showGBombsCheck.AutoSize = true;
+            this.showGBombsCheck.Location = new System.Drawing.Point(128, 157);
+            this.showGBombsCheck.Name = "showGBombsCheck";
+            this.showGBombsCheck.Size = new System.Drawing.Size(119, 17);
+            this.showGBombsCheck.TabIndex = 19;
+            this.showGBombsCheck.Text = "Show Game Bombs";
+            this.showGBombsCheck.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 268);
+            this.Controls.Add(this.showGBombsCheck);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.precentOnLoss);
@@ -328,5 +340,6 @@
         private System.Windows.Forms.CheckBox useStratCheck;
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.stratergyDisplay stratergyDisplay1;
+        private System.Windows.Forms.CheckBox showGBombsCheck;
     }
 }

@@ -55,6 +55,7 @@ namespace Satoshi_GUI
         public double next { get; set; }
         public string message { get; set; }
         public double change { get; set; }
+        public string bombs { get; set; }
     }
     public class CashOutData2
     {

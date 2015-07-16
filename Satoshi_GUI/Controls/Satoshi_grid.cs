@@ -71,6 +71,12 @@ namespace Satoshi_GUI
             _pObj.BackColor = Color.Gray;
         }
 
+        public void FadeBomb()
+        {
+            IsGlowing = true;
+            _pObj.BackColor = Color.IndianRed;
+        }
+
         public void Bomb()
         {
             IsGlowing = true;

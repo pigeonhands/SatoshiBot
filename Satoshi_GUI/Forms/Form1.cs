@@ -15,6 +15,7 @@ namespace Satoshi_GUI
 {
     public partial class Form1 : Form
     {
+        private List<gamePanel> currentPanels = new List<gamePanel>();
         private gamePanel _initGamepanel;
         private int toolstripOffset = 25;
         int tbOffset = 33;
@@ -39,16 +40,17 @@ namespace Satoshi_GUI
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
+            gamePanel ngp = new gamePanel();
+            currentPanels.Add(ngp);
+            ngp.OnRemove += ngp_OnRemove;
+            ngp.Parent = this;
             if (horIndex != 2)//This number is how many game panels wide it will be. Default is 2
             {
                 if (!DontExtend)
                     this.Width = (_initGamepanel.Width * (horIndex + 1)) + 10;
-                gamePanel ngp = new gamePanel();
-                ngp.Parent = this;
                 ngp.Location = new Point(ngp.Width * horIndex,
                     (vertIndex * ngp.Height) + toolstripOffset);
                 ngp.Show();
-                horIndex++;
             }
             else
             {
@@ -56,12 +58,42 @@ namespace Satoshi_GUI
                 horIndex = 0;
                 vertIndex++;
                 this.Height = (_initGamepanel.Height * (vertIndex + 1)) + tbOffset + toolstripOffset;
-                gamePanel ngp = new gamePanel();
-                ngp.Parent = this;
                 ngp.Location = new Point(ngp.Width * horIndex,
                     (vertIndex * ngp.Height) + toolstripOffset);
-                ngp.Show();
+            }
+            horIndex++;
+            ngp.Show();
+        }
+
+        void ngp_OnRemove(gamePanel sender)
+        {
+            currentPanels.Remove(sender);
+            sender.Dispose();
+            vertIndex = 0;
+            horIndex = 1;
+            foreach (gamePanel panel in currentPanels)
+            {
+                if (horIndex != 2)//This number is how many game panels wide it will be. Default is 2
+                {
+                    
+                    panel.Location = new Point(panel.Width * horIndex,
+                        (vertIndex * panel.Height) + toolstripOffset);
+                    panel.Show();
+                }
+                else
+                {
+                    horIndex = 0;
+                    vertIndex++;
+                    panel.Location = new Point(panel.Width * horIndex,
+                        (vertIndex * panel.Height) + toolstripOffset);
+                }
                 horIndex++;
+            }
+            this.Height = (_initGamepanel.Height * (vertIndex + 1)) + tbOffset + toolstripOffset;
+            if (currentPanels.Count == 0)
+            {
+                this.Width = _initGamepanel.Width + 10;
+                DontExtend = false;
             }
         }
 
