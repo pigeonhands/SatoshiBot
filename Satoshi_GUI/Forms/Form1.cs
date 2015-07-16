@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Satoshi_GUI.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +41,11 @@ namespace Satoshi_GUI
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
-            gamePanel ngp = new gamePanel();
+            AddGamePanel(new gamePanel());
+        }
+
+        void AddGamePanel(gamePanel ngp)
+        {
             currentPanels.Add(ngp);
             ngp.OnRemove += ngp_OnRemove;
             ngp.Parent = this;
@@ -68,6 +73,7 @@ namespace Satoshi_GUI
         void ngp_OnRemove(gamePanel sender)
         {
             currentPanels.Remove(sender);
+            sender.StopRunning();
             sender.Dispose();
             vertIndex = 0;
             horIndex = 1;
@@ -102,6 +108,24 @@ namespace Satoshi_GUI
             using (CheckBalanceForm cbf = new CheckBalanceForm())
             {
                 cbf.ShowDialog();
+            }
+        }
+
+        private void toolStripLabel3_Click(object sender, EventArgs e)
+        {
+            using (MultiAddForm maf = new MultiAddForm())
+            {
+                if (maf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    using (SettingsForm sf = new SettingsForm())
+                    {
+                        if (sf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            for (int i = 0; i < maf.SpawnAmmount; i++)
+                                AddGamePanel(new gamePanel(sf));
+                        }
+                    }
+                }
             }
         }
     }

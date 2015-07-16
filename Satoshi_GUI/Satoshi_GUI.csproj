@@ -87,6 +87,12 @@
     <Compile Include="Forms\InputTextForm.Designer.cs">
       <DependentUpon>InputTextForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MultiAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiAddForm.Designer.cs">
+      <DependentUpon>MultiAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SatoshiJQueryClasses.cs" />
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputTextForm.resx">
       <DependentUpon>InputTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MultiAddForm.resx">
+      <DependentUpon>MultiAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

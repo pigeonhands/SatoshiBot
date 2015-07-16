@@ -47,6 +47,39 @@ namespace Satoshi_GUI
             Log("uid=2388291");
         }
 
+        public void StopRunning()
+        {
+            running = false;
+        }
+
+        public gamePanel(SettingsForm sf)
+        {
+            InitializeComponent();
+            Log("Welcome to BanowBot");
+            Log("uid=2388291");
+            PlayerHash = sf.PlayerHash;
+            Bombs = sf.BombCount;
+            Bets = sf.BetAmmount;
+            BasebetCost = sf.BetCost / 1000000;
+            betCost = BasebetCost;
+            multiplyOnLoss = sf.PercentOnLoss / 100;
+            StopAfterWin = sf.StopAfterWin;
+            ShowExceptionWindow = sf.ShowExceptionWindow;
+            useStratergy = sf.UseStrat;
+            StratergySquares = sf.StratergySquares;
+            stratergyIndex = 0;
+            showGameBombs = sf.ShowGameBombs;
+            gameGroupBox.Text = sf.ConfigTag;
+            sf.Dispose();
+            Log("Starting...");
+            PrepRequest("https://satoshimines.com/action/newgame.php");
+            byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
+                Bombs);
+            running = true;
+            button1.Text = "Stop after game.";
+            getPostResponce(newGameresponce, EndNewGameResponce);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (!running)
@@ -87,8 +120,6 @@ namespace Satoshi_GUI
             }
         }
 
-
-
         private void AddWin()
         {
             wins++;
@@ -114,22 +145,26 @@ namespace Satoshi_GUI
 
         public void Log(string input, params object[] format)
         {
-            string fStr = string.Format(input, format);
-            if (this.InvokeRequired)
+            try
             {
-                this.Invoke((MethodInvoker)delegate()
+                string fStr = string.Format(input, format);
+                if (this.InvokeRequired)
+                {
+                    this.Invoke((MethodInvoker) delegate()
+                    {
+                        outputLog.AppendText(fStr + "\r\n");
+                        outputLog.SelectionStart = outputLog.Text.Length;
+                        outputLog.ScrollToCaret();
+                    });
+                }
+                else
                 {
                     outputLog.AppendText(fStr + "\r\n");
                     outputLog.SelectionStart = outputLog.Text.Length;
                     outputLog.ScrollToCaret();
-                });
+                }
             }
-            else
-            {
-                outputLog.AppendText(fStr + "\r\n");
-                outputLog.SelectionStart = outputLog.Text.Length;
-                outputLog.ScrollToCaret();
-            }
+            catch { }
         }
         public byte[] Bcodes(string c, params object[] formatting)
         {
@@ -396,17 +431,20 @@ namespace Satoshi_GUI
 
         void BSta(bool en)
         {
-            this.Invoke((MethodInvoker)delegate()
+            try
             {
-                button1.Enabled = en;
-                if (en)
+                this.Invoke((MethodInvoker) delegate()
                 {
-                    button1.Text = "Start";
-                    running = false;
-                }
+                    button1.Enabled = en;
+                    if (en)
+                    {
+                        button1.Text = "Start";
+                        running = false;
+                    }
 
-            });
-
+                });
+            }
+            catch { }
         }
 
         private static T Deserialize<T>(string json)
