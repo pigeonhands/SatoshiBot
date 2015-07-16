@@ -24,6 +24,7 @@ namespace Satoshi_GUI
         public int[] StratergySquares { get; private set; }
         public bool UseStrat { get; private set; }
         public bool ShowGameBombs { get; private set; }
+        public string ConfigTag { get; private set; }
         public SettingsForm()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace Satoshi_GUI
             ShowExceptionWindow = showExWindow.Checked;
             PercentOnLoss = precentOnLoss.Value;
             ShowGameBombs = showGBombsCheck.Checked;
+            ConfigTag = cfgTag.Text;
             if (PlayerHash == string.Empty)
             {
                 MessageBox.Show("Please enter a hash.");

@@ -46,8 +46,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.stratergyDisplay1 = new Satoshi_GUI.Controls.stratergyDisplay();
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
+            this.stratergyDisplay1 = new Satoshi_GUI.Controls.stratergyDisplay();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cfgTag = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -65,15 +67,15 @@
             // 
             // pHash
             // 
-            this.pHash.Location = new System.Drawing.Point(77, 3);
+            this.pHash.Location = new System.Drawing.Point(92, 3);
             this.pHash.Name = "pHash";
-            this.pHash.Size = new System.Drawing.Size(191, 20);
+            this.pHash.Size = new System.Drawing.Size(176, 20);
             this.pHash.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 33);
+            this.label2.Location = new System.Drawing.Point(4, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 2;
@@ -82,7 +84,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(77, 31);
+            this.radioButton1.Location = new System.Drawing.Point(77, 55);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(31, 17);
             this.radioButton1.TabIndex = 3;
@@ -94,7 +96,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(128, 31);
+            this.radioButton2.Location = new System.Drawing.Point(128, 55);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(31, 17);
             this.radioButton2.TabIndex = 4;
@@ -106,7 +108,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(179, 31);
+            this.radioButton3.Location = new System.Drawing.Point(179, 55);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(31, 17);
             this.radioButton3.TabIndex = 5;
@@ -117,7 +119,7 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(230, 31);
+            this.radioButton4.Location = new System.Drawing.Point(230, 55);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(37, 17);
             this.radioButton4.TabIndex = 6;
@@ -128,7 +130,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 60);
+            this.label3.Location = new System.Drawing.Point(4, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 7;
@@ -136,7 +138,7 @@
             // 
             // numberofBets
             // 
-            this.numberofBets.Location = new System.Drawing.Point(92, 58);
+            this.numberofBets.Location = new System.Drawing.Point(92, 82);
             this.numberofBets.Maximum = new decimal(new int[] {
             24,
             0,
@@ -158,7 +160,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 244);
+            this.button1.Location = new System.Drawing.Point(6, 268);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(261, 23);
             this.button1.TabIndex = 9;
@@ -168,7 +170,7 @@
             // 
             // betCostNUD
             // 
-            this.betCostNUD.Location = new System.Drawing.Point(93, 84);
+            this.betCostNUD.Location = new System.Drawing.Point(93, 108);
             this.betCostNUD.Maximum = new decimal(new int[] {
             1000000000,
             0,
@@ -186,7 +188,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 86);
+            this.label4.Location = new System.Drawing.Point(4, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 10;
@@ -195,7 +197,7 @@
             // stopAfterWinCheck
             // 
             this.stopAfterWinCheck.AutoSize = true;
-            this.stopAfterWinCheck.Location = new System.Drawing.Point(7, 134);
+            this.stopAfterWinCheck.Location = new System.Drawing.Point(7, 158);
             this.stopAfterWinCheck.Name = "stopAfterWinCheck";
             this.stopAfterWinCheck.Size = new System.Drawing.Size(91, 17);
             this.stopAfterWinCheck.TabIndex = 13;
@@ -205,7 +207,7 @@
             // showExWindow
             // 
             this.showExWindow.AutoSize = true;
-            this.showExWindow.Location = new System.Drawing.Point(128, 133);
+            this.showExWindow.Location = new System.Drawing.Point(128, 157);
             this.showExWindow.Name = "showExWindow";
             this.showExWindow.Size = new System.Drawing.Size(141, 17);
             this.showExWindow.TabIndex = 14;
@@ -214,7 +216,7 @@
             // 
             // precentOnLoss
             // 
-            this.precentOnLoss.Location = new System.Drawing.Point(94, 108);
+            this.precentOnLoss.Location = new System.Drawing.Point(94, 132);
             this.precentOnLoss.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -237,7 +239,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 110);
+            this.label5.Location = new System.Drawing.Point(3, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 16;
@@ -258,11 +260,21 @@
             // 
             this.groupBox2.Controls.Add(this.stratergyDisplay1);
             this.groupBox2.Controls.Add(this.useStratCheck);
-            this.groupBox2.Location = new System.Drawing.Point(7, 156);
+            this.groupBox2.Location = new System.Drawing.Point(7, 180);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(101, 82);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // showGBombsCheck
+            // 
+            this.showGBombsCheck.AutoSize = true;
+            this.showGBombsCheck.Location = new System.Drawing.Point(128, 181);
+            this.showGBombsCheck.Name = "showGBombsCheck";
+            this.showGBombsCheck.Size = new System.Drawing.Size(119, 17);
+            this.showGBombsCheck.TabIndex = 19;
+            this.showGBombsCheck.Text = "Show Game Bombs";
+            this.showGBombsCheck.UseVisualStyleBackColor = true;
             // 
             // stratergyDisplay1
             // 
@@ -271,21 +283,29 @@
             this.stratergyDisplay1.Size = new System.Drawing.Size(58, 59);
             this.stratergyDisplay1.TabIndex = 19;
             // 
-            // showGBombsCheck
+            // label6
             // 
-            this.showGBombsCheck.AutoSize = true;
-            this.showGBombsCheck.Location = new System.Drawing.Point(128, 157);
-            this.showGBombsCheck.Name = "showGBombsCheck";
-            this.showGBombsCheck.Size = new System.Drawing.Size(119, 17);
-            this.showGBombsCheck.TabIndex = 19;
-            this.showGBombsCheck.Text = "Show Game Bombs";
-            this.showGBombsCheck.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Config Tag (opt):";
+            // 
+            // cfgTag
+            // 
+            this.cfgTag.Location = new System.Drawing.Point(92, 28);
+            this.cfgTag.Name = "cfgTag";
+            this.cfgTag.Size = new System.Drawing.Size(176, 20);
+            this.cfgTag.TabIndex = 21;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 268);
+            this.ClientSize = new System.Drawing.Size(272, 296);
+            this.Controls.Add(this.cfgTag);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.showGBombsCheck);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label5);
@@ -341,5 +361,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.stratergyDisplay stratergyDisplay1;
         private System.Windows.Forms.CheckBox showGBombsCheck;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox cfgTag;
     }
 }

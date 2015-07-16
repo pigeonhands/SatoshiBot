@@ -67,6 +67,7 @@ namespace Satoshi_GUI
                     StratergySquares = sf.StratergySquares;
                     stratergyIndex = 0;
                     showGameBombs = sf.ShowGameBombs;
+                    gameGroupBox.Text = sf.ConfigTag;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
