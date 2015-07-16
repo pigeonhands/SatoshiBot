@@ -128,5 +128,20 @@ namespace Satoshi_GUI
                 }
             }
         }
+
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+            foreach (gamePanel gp in currentPanels)
+            {
+                gp.StopRunning();
+                gp.Dispose();
+            }
+            currentPanels.Clear();
+            this.Height = _initGamepanel.Height + tbOffset + toolstripOffset;
+            this.Width = _initGamepanel.Width + 10;
+            DontExtend = false;
+            vertIndex = 0;
+            horIndex = 1;
+        }
     }
 }
