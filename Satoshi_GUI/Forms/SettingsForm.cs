@@ -106,6 +106,11 @@ namespace Satoshi_GUI
                         }
 
                     }
+                    else
+                    {
+                        useStratCheck.Checked = false;
+                        UseStrat = false;
+                    }
                 }
             }
             else
