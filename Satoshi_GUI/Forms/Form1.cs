@@ -26,7 +26,7 @@ namespace Satoshi_GUI
         public Form1()
         {
             InitializeComponent();
-            _initGamepanel = new gamePanel();
+            _initGamepanel = new gamePanel(true);
             _initGamepanel.Parent = this;
             _initGamepanel.Location = new Point(0, toolstripOffset);
             _initGamepanel.Show();

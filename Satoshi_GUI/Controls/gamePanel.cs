@@ -47,6 +47,19 @@ namespace Satoshi_GUI
             Log("uid=2388291");
         }
 
+        public gamePanel(bool hideStop)
+        {
+            InitializeComponent();
+            Log("Welcome to BanowBot");
+            Log("uid=2388291");
+            if (hideStop)
+            {
+                button2.Visible = false;
+                button1.Location = new Point(147, 19);
+                button1.Width = 307;
+            }
+        }
+
         public void StopRunning()
         {
             running = false;
@@ -499,6 +512,11 @@ namespace Satoshi_GUI
         {
             if (OnRemove != null)
                 OnRemove(this);
+        }
+
+        private void gameGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

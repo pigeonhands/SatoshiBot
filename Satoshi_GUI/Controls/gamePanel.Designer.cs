@@ -51,26 +51,29 @@
             // winStats
             // 
             this.winStats.AutoSize = true;
-            this.winStats.Location = new System.Drawing.Point(190, 45);
+            this.winStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winStats.Location = new System.Drawing.Point(205, 65);
             this.winStats.Name = "winStats";
-            this.winStats.Size = new System.Drawing.Size(118, 13);
+            this.winStats.Size = new System.Drawing.Size(145, 16);
             this.winStats.TabIndex = 12;
             this.winStats.Text = "0% | Wins: 0 | Losses: 0";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 45);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(144, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Win %:";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(147, 19);
+            this.button1.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(244, 19);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(307, 23);
+            this.button1.Size = new System.Drawing.Size(102, 33);
             this.button1.TabIndex = 10;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -78,9 +81,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(379, 45);
+            this.button2.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(352, 19);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(102, 33);
             this.button2.TabIndex = 14;
             this.button2.Text = "Remove";
             this.button2.UseVisualStyleBackColor = true;
@@ -100,6 +104,7 @@
             this.gameGroupBox.Size = new System.Drawing.Size(464, 160);
             this.gameGroupBox.TabIndex = 16;
             this.gameGroupBox.TabStop = false;
+            this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
             // satoshi_grid1
             // 
