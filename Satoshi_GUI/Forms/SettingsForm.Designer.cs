@@ -47,9 +47,9 @@
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
-            this.stratergyDisplay1 = new Satoshi_GUI.Controls.stratergyDisplay();
             this.label6 = new System.Windows.Forms.Label();
             this.cfgTag = new System.Windows.Forms.TextBox();
+            this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -258,7 +258,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.stratergyDisplay1);
+            this.groupBox2.Controls.Add(this.stratDisplay);
             this.groupBox2.Controls.Add(this.useStratCheck);
             this.groupBox2.Location = new System.Drawing.Point(7, 180);
             this.groupBox2.Name = "groupBox2";
@@ -276,13 +276,6 @@
             this.showGBombsCheck.Text = "Show Game Bombs";
             this.showGBombsCheck.UseVisualStyleBackColor = true;
             // 
-            // stratergyDisplay1
-            // 
-            this.stratergyDisplay1.Location = new System.Drawing.Point(21, 17);
-            this.stratergyDisplay1.Name = "stratergyDisplay1";
-            this.stratergyDisplay1.Size = new System.Drawing.Size(58, 59);
-            this.stratergyDisplay1.TabIndex = 19;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -298,6 +291,16 @@
             this.cfgTag.Name = "cfgTag";
             this.cfgTag.Size = new System.Drawing.Size(176, 20);
             this.cfgTag.TabIndex = 21;
+            // 
+            // stratDisplay
+            // 
+            this.stratDisplay.GridBorder = false;
+            this.stratDisplay.Location = new System.Drawing.Point(19, 20);
+            this.stratDisplay.Name = "stratDisplay";
+            this.stratDisplay.Size = new System.Drawing.Size(57, 57);
+            this.stratDisplay.SquareBorder = true;
+            this.stratDisplay.TabIndex = 18;
+            this.stratDisplay.Text = "satoshiGrid1";
             // 
             // SettingsForm
             // 
@@ -359,9 +362,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox useStratCheck;
         private System.Windows.Forms.GroupBox groupBox2;
-        private Controls.stratergyDisplay stratergyDisplay1;
         private System.Windows.Forms.CheckBox showGBombsCheck;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox cfgTag;
+        private Controls.SatoshiGrid stratDisplay;
     }
 }

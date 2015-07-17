@@ -34,7 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.gameGroupBox = new System.Windows.Forms.GroupBox();
-            this.satoshi_grid1 = new Satoshi_GUI.Satoshi_grid();
+            this.gameSquares = new Satoshi_GUI.Controls.SatoshiGrid();
             this.gameGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +92,7 @@
             // 
             // gameGroupBox
             // 
-            this.gameGroupBox.Controls.Add(this.satoshi_grid1);
+            this.gameGroupBox.Controls.Add(this.gameSquares);
             this.gameGroupBox.Controls.Add(this.button1);
             this.gameGroupBox.Controls.Add(this.button2);
             this.gameGroupBox.Controls.Add(this.label2);
@@ -106,13 +106,15 @@
             this.gameGroupBox.TabStop = false;
             this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
-            // satoshi_grid1
+            // gameSquares
             // 
-            this.satoshi_grid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.satoshi_grid1.Location = new System.Drawing.Point(6, 19);
-            this.satoshi_grid1.Name = "satoshi_grid1";
-            this.satoshi_grid1.Size = new System.Drawing.Size(132, 132);
-            this.satoshi_grid1.TabIndex = 9;
+            this.gameSquares.GridBorder = true;
+            this.gameSquares.Location = new System.Drawing.Point(11, 22);
+            this.gameSquares.Name = "gameSquares";
+            this.gameSquares.Size = new System.Drawing.Size(127, 127);
+            this.gameSquares.SquareBorder = true;
+            this.gameSquares.TabIndex = 15;
+            this.gameSquares.Text = "satoshiGrid1";
             // 
             // gamePanel
             // 
@@ -134,8 +136,8 @@
         private System.Windows.Forms.Label winStats;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private Satoshi_grid satoshi_grid1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox gameGroupBox;
+        private Controls.SatoshiGrid gameSquares;
     }
 }

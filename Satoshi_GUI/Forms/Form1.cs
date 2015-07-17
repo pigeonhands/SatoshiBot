@@ -37,6 +37,7 @@ namespace Satoshi_GUI
             this.Height = _initGamepanel.Height + tbOffset + toolstripOffset;
             this.Width = _initGamepanel.Width + 10;
             this.Text += " - " + Application.ProductVersion;
+            
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)

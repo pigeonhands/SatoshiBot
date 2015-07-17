@@ -97,14 +97,13 @@ namespace Satoshi_GUI
                         if (UseStrat)
                         {
                             foreach (int sv in StratergySquares)
-                                stratergyDisplay1.Squares[sv].Glow();
+                                stratDisplay.SetSquare(sv, Brushes.Green);
                         }
                         else
                         {
                             useStratCheck.Checked = false;
-                            stratergyDisplay1.Reset();
+                            stratDisplay.Reset();
                         }
-
                     }
                     else
                     {
@@ -116,7 +115,7 @@ namespace Satoshi_GUI
             else
             {
                 UseStrat = false;
-                stratergyDisplay1.Reset();
+                stratDisplay.Reset();
             }
             numberofBets.Enabled = !UseStrat;
         }

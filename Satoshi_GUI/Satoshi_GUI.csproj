@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SatoshiGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\StartergyGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>

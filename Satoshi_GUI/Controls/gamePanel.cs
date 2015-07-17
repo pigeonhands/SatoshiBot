@@ -204,7 +204,7 @@ namespace Satoshi_GUI
             int i = r.Next(1, 26);
             this.Invoke((MethodInvoker)delegate()
             {
-                while (satoshi_grid1.Squares[i - 1].IsGlowing)
+                while (!gameSquares.IsIdle(i - 1))
                     i = r.Next(1, 26);
             });
             return i;
@@ -214,7 +214,7 @@ namespace Satoshi_GUI
         {
             this.Invoke((MethodInvoker)delegate()
             {
-                satoshi_grid1.Squares[s - 1].Glow();
+                gameSquares.SetSquare(s - 1, Brushes.Green);
             });
         }
 
@@ -222,16 +222,16 @@ namespace Satoshi_GUI
         {
             this.Invoke((MethodInvoker)delegate()
             {
-                satoshi_grid1.Squares[s - 1].Bomb();
+                gameSquares.SetSquare(s - 1, Brushes.Red);
             });
         }
         public void FadebombSquare(int s)
         {
             this.Invoke((MethodInvoker)delegate()
             {
-                if (satoshi_grid1.Squares[s - 1].IsGlowing)
+                if (!gameSquares.IsIdle(s - 1))
                     return;
-                satoshi_grid1.Squares[s - 1].FadeBomb();
+                gameSquares.SetSquare(s - 1, Brushes.LightSalmon);
             });
         }
 
@@ -239,7 +239,7 @@ namespace Satoshi_GUI
         {
             this.Invoke((MethodInvoker)delegate()
             {
-                satoshi_grid1.Reset();
+                gameSquares.Reset();
             });
         }
 
@@ -247,7 +247,7 @@ namespace Satoshi_GUI
         {
             this.Invoke((MethodInvoker)delegate()
             {
-                satoshi_grid1.Squares[s - 1].Dim();
+                gameSquares.IdleSquare(s - 1);
             });
         }
 
