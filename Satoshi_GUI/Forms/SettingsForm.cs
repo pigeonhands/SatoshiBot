@@ -96,8 +96,18 @@ namespace Satoshi_GUI
                         UseStrat = StratergySquares != null && StratergySquares.Length > 0;
                         if (UseStrat)
                         {
+                            /*
+                            for (int i = 0; i < StratergySquares.Length; i++)
+                            {
+                                if (StratergySquares[i] == 1)
+                                {
+                                    stratDisplay.SetSquare(i, Brushes.Green);
+                                }
+                            }*/
                             foreach (int sv in StratergySquares)
+                            {
                                 stratDisplay.SetSquare(sv, Brushes.Green);
+                            }
                         }
                         else
                         {

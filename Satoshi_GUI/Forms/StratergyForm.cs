@@ -26,13 +26,13 @@ namespace Satoshi_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<int> p_ind = new List<int>();
-            for (int i = 0; i < startergyGrid1.Squares.Length; i++)
+            List<int> selectedSquares = new List<int>();
+            for (int i = 0; i < stratSelector.squareData.Length; i++)
             {
-                if (startergyGrid1.Squares[i].IsGlowing)
-                    p_ind.Add(i);
+                if (stratSelector.squareData[i] == 1)
+                    selectedSquares.Add(i);
             }
-            StratergyArray = p_ind.ToArray();
+            StratergyArray = selectedSquares.ToArray();
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
     }
