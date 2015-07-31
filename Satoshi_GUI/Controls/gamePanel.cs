@@ -156,6 +156,14 @@ namespace Satoshi_GUI
             });
         }
 
+        public void ClearLog()
+        {
+            this.Invoke((MethodInvoker) delegate()
+            {
+                outputLog.Clear();
+            });
+        }
+
         public void Log(string input, params object[] format)
         {
             try
@@ -365,6 +373,7 @@ namespace Satoshi_GUI
                         PrepRequest("https://satoshimines.com/action/cashout.php");
                         byte[] cashoutResponce =
                             Bcodes("game_hash={0}", Data.game_hash);
+                        
                         getPostResponce(cashoutResponce, endCashoutResponce);
                     }
                     else
@@ -413,7 +422,7 @@ namespace Satoshi_GUI
                     throw new Exception("Deserialize failed, object is null.");
                 if (Data.status != "success")
                     throw new Exception("Json Error: " + Data.message);
-                    
+                ClearLog();
                 Log("Game Started");
                 Log("Type: {0} | Bombs: {1}", Data.gametype, Data.num_mines);
                 int betSquare = getNextSquare();
