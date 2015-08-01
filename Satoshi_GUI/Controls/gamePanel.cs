@@ -451,6 +451,7 @@ namespace Satoshi_GUI
                     }
                 }
                 Log("Failed to start new game.");
+                running = false;
                 BSta(true);
             }
         }
@@ -467,7 +468,6 @@ namespace Satoshi_GUI
                         button1.Text = "Start";
                         running = false;
                     }
-
                 });
             }
             catch { }
@@ -512,6 +512,7 @@ namespace Satoshi_GUI
             catch
             {
                 Log("Failed to start new game.");
+                running = false;
                 BSta(true);
             }
         }
