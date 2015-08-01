@@ -28,13 +28,13 @@ namespace Satoshi_GUI
         private int horIndex = 1;
         private int vertIndex = 0;
         static StreamWriter logStream;
-        SaveLogDelegate saveLog = new SaveLogDelegate(WriteToFile);
         public Form1()
         {
             InitializeComponent();
             _initGamepanel = new gamePanel(true);
             _initGamepanel.Parent = this;
             _initGamepanel.Location = new Point(0, toolstripOffset);
+            _initGamepanel.SaveLog += WriteToFile;
             _initGamepanel.Show();
         }
 
@@ -170,6 +170,7 @@ namespace Satoshi_GUI
         {
             currentPanels.Add(ngp);
             ngp.OnRemove += ngp_OnRemove;
+            ngp.SaveLog += WriteToFile;
             ngp.Parent = this;
             if (horIndex != 2)//This number is how many game panels wide it will be. Default is 2
             {

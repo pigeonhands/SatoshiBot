@@ -41,6 +41,8 @@ namespace Satoshi_GUI
         private int stratergyIndex = 0;
         public bool showGameBombs = false;
         public bool SaveLogToFile = false;
+
+        private bool notFirstClear = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -118,6 +120,7 @@ namespace Satoshi_GUI
                     SaveLogToFile = sf.SaveLogToFile;
                 }
                 // button1.Enabled = false;
+                SaveLog("=[Trying to start game]");
                 Log("Starting...");
 
                 PrepRequest("https://satoshimines.com/action/newgame.php");
@@ -158,14 +161,16 @@ namespace Satoshi_GUI
             });
         }
 
-        public void ClearLog()
+        public void ClearLog(bool save)
         {
+            string log = string.Empty;
             this.Invoke((MethodInvoker) delegate()
             {
-                if (SaveLog != null && SaveLogToFile)
-                    SaveLog(outputLog.Text);
+                log = outputLog.Text;
                 outputLog.Clear();
             });
+            if (SaveLog != null && SaveLogToFile && save)
+                SaveLog(log);
         }
 
         public void Log(string input, params object[] format)
@@ -214,11 +219,18 @@ namespace Satoshi_GUI
                 }
             }
             int i = r.Next(1, 26);
-            this.Invoke((MethodInvoker)delegate()
+            try
             {
-                while (!gameSquares.IsIdle(i - 1))
-                    i = r.Next(1, 26);
-            });
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    while (!gameSquares.IsIdle(i - 1))
+                        i = r.Next(1, 26);
+                });
+            }
+            catch
+            {
+                i = r.Next(1, 26);
+            }
             return i;
         }
 
@@ -426,7 +438,9 @@ namespace Satoshi_GUI
                     throw new Exception("Deserialize failed, object is null.");
                 if (Data.status != "success")
                     throw new Exception("Json Error: " + Data.message);
-                ClearLog();
+                ClearLog(notFirstClear);
+                notFirstClear = true;
+                SaveLog("=[Game started!");
                 Log("Game Started");
                 Log("Type: {0} | Bombs: {1}", Data.gametype, Data.num_mines);
                 int betSquare = getNextSquare();
@@ -450,6 +464,7 @@ namespace Satoshi_GUI
                         except.ShowDialog();
                     }
                 }
+                SaveLog("=[Game failed to start]");
                 Log("Failed to start new game.");
                 running = false;
                 BSta(true);
@@ -512,6 +527,7 @@ namespace Satoshi_GUI
             catch
             {
                 Log("Failed to start new game.");
+                SaveLog("=[Game failed to start]");
                 running = false;
                 BSta(true);
             }
