@@ -54,6 +54,7 @@
     <Compile Include="Controls\StartergyGrid.Designer.cs">
       <DependentUpon>StartergyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="DefaultSettings.cs" />
     <Compile Include="Forms\CheckBalanceForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -49,6 +49,7 @@
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cfgTag = new System.Windows.Forms.TextBox();
+            this.saveLog = new System.Windows.Forms.CheckBox();
             this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
@@ -235,6 +236,7 @@
             0,
             0,
             0});
+            this.precentOnLoss.ValueChanged += new System.EventHandler(this.precentOnLoss_ValueChanged);
             // 
             // label5
             // 
@@ -292,6 +294,16 @@
             this.cfgTag.Size = new System.Drawing.Size(176, 20);
             this.cfgTag.TabIndex = 21;
             // 
+            // saveLog
+            // 
+            this.saveLog.AutoSize = true;
+            this.saveLog.Location = new System.Drawing.Point(128, 204);
+            this.saveLog.Name = "saveLog";
+            this.saveLog.Size = new System.Drawing.Size(96, 17);
+            this.saveLog.TabIndex = 22;
+            this.saveLog.Text = "Save log to file";
+            this.saveLog.UseVisualStyleBackColor = true;
+            // 
             // stratDisplay
             // 
             this.stratDisplay.GridBorder = false;
@@ -307,6 +319,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 296);
+            this.Controls.Add(this.saveLog);
             this.Controls.Add(this.cfgTag);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.showGBombsCheck);
@@ -366,5 +379,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox cfgTag;
         private Controls.SatoshiGrid stratDisplay;
+        private System.Windows.Forms.CheckBox saveLog;
     }
 }

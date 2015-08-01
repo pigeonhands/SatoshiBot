@@ -18,7 +18,7 @@ namespace Satoshi_GUI
     public partial class gamePanel : UserControl
     {
         public event OnRemoveCallback OnRemove;
-
+        public event SaveLogDelegate SaveLog;
         private string PlayerHash;
         private int Bets = 1;
         private int Bombs = 3;
@@ -40,6 +40,7 @@ namespace Satoshi_GUI
         private int[] StratergySquares;
         private int stratergyIndex = 0;
         public bool showGameBombs = false;
+        public bool SaveLogToFile = false;
         public gamePanel()
         {
             InitializeComponent();
@@ -97,7 +98,7 @@ namespace Satoshi_GUI
         {
             if (!running)
             {
-                using (SettingsForm sf = new SettingsForm())
+                using (SettingsForm sf = new SettingsForm(Global.DefaultGameSettings))
                 {
                     if (sf.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                         return;
@@ -114,6 +115,7 @@ namespace Satoshi_GUI
                     stratergyIndex = 0;
                     showGameBombs = sf.ShowGameBombs;
                     gameGroupBox.Text = sf.ConfigTag;
+                    SaveLogToFile = sf.SaveLogToFile;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
@@ -160,6 +162,8 @@ namespace Satoshi_GUI
         {
             this.Invoke((MethodInvoker) delegate()
             {
+                if (SaveLog != null && SaveLogToFile)
+                    SaveLog(outputLog.Text);
                 outputLog.Clear();
             });
         }
