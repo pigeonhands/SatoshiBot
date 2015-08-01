@@ -17,7 +17,7 @@ using System.Xml.Linq;
 
 namespace Satoshi_GUI
 {
-    public delegate void SaveLogDelegate(string text);
+    public delegate void SaveLogDelegate(params string[] text);
     public partial class Form1 : Form
     {
         private List<gamePanel> currentPanels = new List<gamePanel>();
@@ -38,13 +38,14 @@ namespace Satoshi_GUI
             _initGamepanel.Show();
         }
 
-        private static void WriteToFile(string text)
+        private static void WriteToFile(params string[] text)
         {
             if (logStream != null)
             {
                 lock(logStream)
                 {
-                    logStream.WriteLine(text);
+                    foreach (string s in text)
+                        logStream.WriteLine(s);
                     logStream.Flush();
                 }
             }

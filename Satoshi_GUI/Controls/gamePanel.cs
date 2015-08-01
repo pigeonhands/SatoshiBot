@@ -120,7 +120,6 @@ namespace Satoshi_GUI
                     SaveLogToFile = sf.SaveLogToFile;
                 }
                 // button1.Enabled = false;
-                SaveLog("=[Trying to start game]");
                 Log("Starting...");
 
                 PrepRequest("https://satoshimines.com/action/newgame.php");
@@ -163,13 +162,24 @@ namespace Satoshi_GUI
 
         public void ClearLog(bool save)
         {
-            string log = string.Empty;
+            string[] log = new string[] { };
             this.Invoke((MethodInvoker) delegate()
             {
-                log = outputLog.Text;
+                log = outputLog.Lines;
                 outputLog.Clear();
             });
             if (SaveLog != null && SaveLogToFile && save)
+                SaveLog(log);
+        }
+
+        public void SaveLogDisk()
+        {
+            string[] log = new string[] { };
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                log = outputLog.Lines;
+            });
+            if (SaveLog != null && SaveLogToFile)
                 SaveLog(log);
         }
 
@@ -305,6 +315,8 @@ namespace Satoshi_GUI
                 if (StopAfterWin)
                 {
                     Log("Stop After win is enabled... Stoping...");
+                    SaveLogDisk();
+                    notFirstClear = false;
                     running = false;
                 }
                 Log("");
@@ -440,8 +452,7 @@ namespace Satoshi_GUI
                     throw new Exception("Json Error: " + Data.message);
                 ClearLog(notFirstClear);
                 notFirstClear = true;
-                SaveLog("=[Game started!");
-                Log("Game Started");
+                Log("=[Game Started]=");
                 Log("Type: {0} | Bombs: {1}", Data.gametype, Data.num_mines);
                 int betSquare = getNextSquare();
                 Log("betting square {0}", betSquare);
@@ -464,7 +475,6 @@ namespace Satoshi_GUI
                         except.ShowDialog();
                     }
                 }
-                SaveLog("=[Game failed to start]");
                 Log("Failed to start new game.");
                 running = false;
                 BSta(true);
@@ -527,7 +537,6 @@ namespace Satoshi_GUI
             catch
             {
                 Log("Failed to start new game.");
-                SaveLog("=[Game failed to start]");
                 running = false;
                 BSta(true);
             }
