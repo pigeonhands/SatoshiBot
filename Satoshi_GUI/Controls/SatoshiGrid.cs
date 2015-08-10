@@ -14,7 +14,7 @@ namespace Satoshi_GUI.Controls
     {
         private Graphics g;
         private int squareSide = 0;
-        private int space = 3;
+        private int space = 5;
         private int gridSides = 5;
         private Brush[] squareData;
         private int borderSize = 0;
@@ -70,7 +70,7 @@ namespace Satoshi_GUI.Controls
 
         private void RecaclulateSizes()
         {
-            int single_square = (this.Height / gridSides);
+            int single_square = ((this.Height - 1) / gridSides);
             space = single_square / 9;
             squareSide = single_square - space;
             borderSize = single_square / 9;

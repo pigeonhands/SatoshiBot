@@ -42,7 +42,7 @@
             // 
             // outputLog
             // 
-            this.outputLog.Location = new System.Drawing.Point(148, 73);
+            this.outputLog.Location = new System.Drawing.Point(118, 52);
             this.outputLog.Name = "outputLog";
             this.outputLog.ReadOnly = true;
             this.outputLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -75,7 +75,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(148, 9);
+            this.button1.Location = new System.Drawing.Point(118, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(151, 33);
             this.button1.TabIndex = 10;
@@ -86,7 +86,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(304, 9);
+            this.button2.Location = new System.Drawing.Point(274, 13);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(151, 33);
             this.button2.TabIndex = 14;
@@ -107,16 +107,16 @@
             this.gameGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gameGroupBox.Location = new System.Drawing.Point(7, 3);
             this.gameGroupBox.Name = "gameGroupBox";
-            this.gameGroupBox.Size = new System.Drawing.Size(462, 166);
+            this.gameGroupBox.Size = new System.Drawing.Size(434, 166);
             this.gameGroupBox.TabIndex = 16;
             this.gameGroupBox.TabStop = false;
             this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(149, 48);
+            this.button4.Location = new System.Drawing.Point(6, 128);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(71, 20);
+            this.button4.Size = new System.Drawing.Size(106, 20);
             this.button4.TabIndex = 17;
             this.button4.Text = "Pause";
             this.button4.UseVisualStyleBackColor = true;
@@ -124,9 +124,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(228, 48);
+            this.button3.Location = new System.Drawing.Point(118, 128);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 20);
+            this.button3.Size = new System.Drawing.Size(110, 20);
             this.button3.TabIndex = 16;
             this.button3.Text = "Clear stats";
             this.button3.UseVisualStyleBackColor = true;
@@ -135,9 +135,9 @@
             // gameSquares
             // 
             this.gameSquares.GridBorder = true;
-            this.gameSquares.Location = new System.Drawing.Point(6, 9);
+            this.gameSquares.Location = new System.Drawing.Point(7, 19);
             this.gameSquares.Name = "gameSquares";
-            this.gameSquares.Size = new System.Drawing.Size(136, 136);
+            this.gameSquares.Size = new System.Drawing.Size(103, 103);
             this.gameSquares.SquareBorder = true;
             this.gameSquares.TabIndex = 15;
             this.gameSquares.Text = "satoshiGrid1";
@@ -148,7 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gameGroupBox);
             this.Name = "gamePanel";
-            this.Size = new System.Drawing.Size(474, 174);
+            this.Size = new System.Drawing.Size(450, 174);
             this.Load += new System.EventHandler(this.gamePanel_Load);
             this.gameGroupBox.ResumeLayout(false);
             this.gameGroupBox.PerformLayout();

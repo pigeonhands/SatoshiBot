@@ -52,10 +52,14 @@
             this.cfgTag = new System.Windows.Forms.TextBox();
             this.saveLog = new System.Windows.Forms.CheckBox();
             this.stopAfterLossCheck = new System.Windows.Forms.CheckBox();
+            this.stopAfterGamesChecked = new System.Windows.Forms.CheckBox();
+            this.stopAfterGamesNum = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stopAfterGamesNum)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -199,7 +203,7 @@
             // stopAfterWinCheck
             // 
             this.stopAfterWinCheck.AutoSize = true;
-            this.stopAfterWinCheck.Location = new System.Drawing.Point(7, 158);
+            this.stopAfterWinCheck.Location = new System.Drawing.Point(128, 252);
             this.stopAfterWinCheck.Name = "stopAfterWinCheck";
             this.stopAfterWinCheck.Size = new System.Drawing.Size(91, 17);
             this.stopAfterWinCheck.TabIndex = 13;
@@ -210,7 +214,7 @@
             // showExWindow
             // 
             this.showExWindow.AutoSize = true;
-            this.showExWindow.Location = new System.Drawing.Point(128, 157);
+            this.showExWindow.Location = new System.Drawing.Point(128, 182);
             this.showExWindow.Name = "showExWindow";
             this.showExWindow.Size = new System.Drawing.Size(141, 17);
             this.showExWindow.TabIndex = 14;
@@ -283,7 +287,7 @@
             // showGBombsCheck
             // 
             this.showGBombsCheck.AutoSize = true;
-            this.showGBombsCheck.Location = new System.Drawing.Point(128, 181);
+            this.showGBombsCheck.Location = new System.Drawing.Point(128, 206);
             this.showGBombsCheck.Name = "showGBombsCheck";
             this.showGBombsCheck.Size = new System.Drawing.Size(119, 17);
             this.showGBombsCheck.TabIndex = 19;
@@ -309,7 +313,7 @@
             // saveLog
             // 
             this.saveLog.AutoSize = true;
-            this.saveLog.Location = new System.Drawing.Point(128, 204);
+            this.saveLog.Location = new System.Drawing.Point(128, 229);
             this.saveLog.Name = "saveLog";
             this.saveLog.Size = new System.Drawing.Size(96, 17);
             this.saveLog.TabIndex = 22;
@@ -319,18 +323,64 @@
             // stopAfterLossCheck
             // 
             this.stopAfterLossCheck.AutoSize = true;
-            this.stopAfterLossCheck.Location = new System.Drawing.Point(7, 181);
+            this.stopAfterLossCheck.Location = new System.Drawing.Point(128, 275);
             this.stopAfterLossCheck.Name = "stopAfterLossCheck";
             this.stopAfterLossCheck.Size = new System.Drawing.Size(93, 17);
             this.stopAfterLossCheck.TabIndex = 23;
             this.stopAfterLossCheck.Text = "Stop after loss";
             this.stopAfterLossCheck.UseVisualStyleBackColor = true;
             // 
+            // stopAfterGamesChecked
+            // 
+            this.stopAfterGamesChecked.AutoSize = true;
+            this.stopAfterGamesChecked.Location = new System.Drawing.Point(6, 159);
+            this.stopAfterGamesChecked.Name = "stopAfterGamesChecked";
+            this.stopAfterGamesChecked.Size = new System.Drawing.Size(75, 17);
+            this.stopAfterGamesChecked.TabIndex = 24;
+            this.stopAfterGamesChecked.Text = "Stop after:";
+            this.stopAfterGamesChecked.UseVisualStyleBackColor = true;
+            this.stopAfterGamesChecked.CheckedChanged += new System.EventHandler(this.stopAfterGamesChecked_CheckedChanged);
+            // 
+            // stopAfterGamesNum
+            // 
+            this.stopAfterGamesNum.Enabled = false;
+            this.stopAfterGamesNum.Location = new System.Drawing.Point(95, 158);
+            this.stopAfterGamesNum.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.stopAfterGamesNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.stopAfterGamesNum.Name = "stopAfterGamesNum";
+            this.stopAfterGamesNum.Size = new System.Drawing.Size(119, 20);
+            this.stopAfterGamesNum.TabIndex = 25;
+            this.stopAfterGamesNum.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(220, 160);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Games";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 338);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.stopAfterGamesNum);
+            this.Controls.Add(this.stopAfterGamesChecked);
             this.Controls.Add(this.stopAfterLossCheck);
             this.Controls.Add(this.saveLog);
             this.Controls.Add(this.cfgTag);
@@ -363,6 +413,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stopAfterGamesNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,5 +445,8 @@
         private Controls.SatoshiGrid stratDisplay;
         private System.Windows.Forms.CheckBox saveLog;
         private System.Windows.Forms.CheckBox stopAfterLossCheck;
+        private System.Windows.Forms.CheckBox stopAfterGamesChecked;
+        private System.Windows.Forms.NumericUpDown stopAfterGamesNum;
+        private System.Windows.Forms.Label label7;
     }
 }

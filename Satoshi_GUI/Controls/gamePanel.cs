@@ -22,6 +22,7 @@ namespace Satoshi_GUI
         private double loss = 0;
         private decimal BasebetCost = 0;
         private int currentBetStreak = 0;
+        private int currentPlayStreak = 0;
 
         public event OnRemoveCallback OnRemove;
         public event SaveLogDelegate SaveLog;
@@ -330,6 +331,21 @@ namespace Satoshi_GUI
             }
         }
 
+
+        void CheckLastGame()
+        {
+            if (GameConfig.StopAfterGames)
+            {
+                currentPlayStreak += 1;
+                if (currentPlayStreak > GameConfig.StopAfterGamesAmmount)
+                {
+                    Log("Completed {0} games... Stoping...", currentPlayStreak);
+                    SaveLogDisk();
+                    notFirstClear = false;
+                    running = false;
+                }
+            }
+        }
         private void EndBetResponce(IAsyncResult AR)
         {
             try
@@ -357,7 +373,7 @@ namespace Satoshi_GUI
                                 FadebombSquare(bS);
                         }
                     }
-                    if (GameConfig.StopAfterLoss)
+                    if (GameConfig.StopAfterLoss && !running)
                     {
                         Log("Stop After loss is enabled... Stoping...");
                         SaveLogDisk();
@@ -436,6 +452,9 @@ namespace Satoshi_GUI
         {
             try
             {
+                CheckLastGame();
+                if (!running)
+                    return;
                 clearSquares();
                 currentBetStreak = 0;
                 HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);

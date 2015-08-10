@@ -21,5 +21,7 @@ namespace Satoshi_GUI
         public bool ShowGameBombs { get; set; }
         public string ConfigTag { get; set; }
         public bool SaveLogToFile { get; set; }
+        public bool StopAfterGames { get; set; }
+        public int StopAfterGamesAmmount { get; set; }
     }
 }

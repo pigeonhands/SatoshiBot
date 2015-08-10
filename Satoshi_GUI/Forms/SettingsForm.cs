@@ -70,6 +70,12 @@ namespace Satoshi_GUI
             showGBombsCheck.Checked = ds.ShowGameBombs;
             saveLog.Checked = ds.SaveLogToFile;
             cfgTag.Text = ds.ConfigTag;
+            stopAfterGamesChecked.Checked = ds.StopAfterGames;
+            if(ds.StopAfterGamesAmmount < 1)
+                stopAfterGamesNum.Value = 1;
+            else
+                stopAfterGamesNum.Value = ds.StopAfterGamesAmmount;
+            stopAfterGamesNum.Enabled = stopAfterGamesChecked.Checked;
 
             switch (ds.BombCount)
             {
@@ -106,6 +112,8 @@ namespace Satoshi_GUI
             ds.ShowGameBombs = GameConfig.ShowGameBombs;
             ds.ConfigTag = GameConfig.ConfigTag;
             ds.SaveLogToFile = GameConfig.SaveLogToFile;
+            ds.StopAfterGames = GameConfig.StopAfterGames;
+            ds.StopAfterGamesAmmount = GameConfig.StopAfterGamesAmmount;
             return ds;
         }
 
@@ -158,6 +166,8 @@ namespace Satoshi_GUI
             GameConfig.ShowGameBombs = showGBombsCheck.Checked;
             GameConfig.SaveLogToFile = saveLog.Checked;
             GameConfig.ConfigTag = cfgTag.Text;
+            GameConfig.StopAfterGamesAmmount = (int)stopAfterGamesNum.Value;
+            GameConfig.StopAfterGames = stopAfterGamesChecked.Checked;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
@@ -225,6 +235,11 @@ namespace Satoshi_GUI
         private void stopAfterWinCheck_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void stopAfterGamesChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            stopAfterGamesNum.Enabled = stopAfterGamesChecked.Checked;
         }
     }
 }
