@@ -340,7 +340,7 @@ namespace Satoshi_GUI
                 currentPlayStreak += 1;
                 if (currentPlayStreak > GameConfig.StopAfterGamesAmmount)
                 {
-                    Log("Completed {0} games... Stoping...", currentPlayStreak);
+                    Log("Completed {0} games... Stoping...", currentPlayStreak-1);
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
@@ -455,7 +455,11 @@ namespace Satoshi_GUI
             {
                 CheckLastGame();
                 if (!running)
+                {
+                    BSta(true);
                     return;
+                }
+                    
                 clearSquares();
                 currentBetStreak = 0;
                 HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);
