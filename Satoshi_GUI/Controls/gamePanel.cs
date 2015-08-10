@@ -11,40 +11,39 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Net;
 using System.Globalization;
+using System.Threading;
 
 namespace Satoshi_GUI
 {
     public delegate void OnRemoveCallback(gamePanel sender);
     public partial class gamePanel : UserControl
     {
+        private double wins = 0;
+        private double loss = 0;
+        private decimal BasebetCost = 0;
+        private int currentBetStreak = 0;
+
         public event OnRemoveCallback OnRemove;
         public event SaveLogDelegate SaveLog;
-        private string PlayerHash;
-        private int Bets = 1;
-        private int Bombs = 3;
-        private decimal BasebetCost = 0;
-        private decimal betCost = 0;
+
+        AutoResetEvent pauser = new AutoResetEvent(false);
+        private GameSettings GameConfig;
         private GameData Data;
         private Random r = new Random();
         private HttpWebRequest _httpRequest;
-        private int currentBetStreak = 0;
-        private double wins = 0;
-        private double loss = 0;
+        
         private bool running = false;
-        private bool StopAfterWin = false;
-        private bool ShowExceptionWindow = false;
         string lastResponce = string.Empty;
         string lastSent = string.Empty;
-        private decimal multiplyOnLoss = 1;
-        private bool useStratergy = false;
-        private int[] StratergySquares;
-        private int stratergyIndex = 0;
-        public bool showGameBombs = false;
-        public bool SaveLogToFile = false;
 
+        private decimal multiplyOnLoss = 1;
+        private int stratergyIndex = 0;
         private bool notFirstClear = false;
+        private bool IsWaiting = false;
+
         public gamePanel()
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
             Log("Welcome to BanowBot");
             Log("uid=2388291");
@@ -52,13 +51,14 @@ namespace Satoshi_GUI
 
         public gamePanel(bool hideStop)
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
             Log("Welcome to BanowBot");
             Log("uid=2388291");
             if (hideStop)
             {
                 button2.Visible = false;
-                button1.Location = new Point(147, 19);
+               // button1.Location = new Point(147, 19);
                 button1.Width = 307;
             }
         }
@@ -70,27 +70,21 @@ namespace Satoshi_GUI
 
         public gamePanel(SettingsForm sf)
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
             Log("Welcome to BanowBot");
             Log("uid=2388291");
-            PlayerHash = sf.PlayerHash;
-            Bombs = sf.BombCount;
-            Bets = sf.BetAmmount;
-            BasebetCost = sf.BetCost / 1000000;
-            betCost = BasebetCost;
-            multiplyOnLoss = sf.PercentOnLoss / 100;
-            StopAfterWin = sf.StopAfterWin;
-            ShowExceptionWindow = sf.ShowExceptionWindow;
-            useStratergy = sf.UseStrat;
-            StratergySquares = sf.StratergySquares;
+            GameConfig = sf.GameConfig;
+            BasebetCost = GameConfig.BetCost / 1000000;
+            GameConfig.BetCost = BasebetCost;
+            multiplyOnLoss = GameConfig.PercentOnLoss / 100;
             stratergyIndex = 0;
-            showGameBombs = sf.ShowGameBombs;
-            gameGroupBox.Text = sf.ConfigTag;
+            gameGroupBox.Text = GameConfig.ConfigTag;
             sf.Dispose();
             Log("Starting...");
             PrepRequest("https://satoshimines.com/action/newgame.php");
-            byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
-                Bombs);
+            byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                GameConfig.BombCount);
             running = true;
             button1.Text = "Stop after game.";
             getPostResponce(newGameresponce, EndNewGameResponce);
@@ -104,27 +98,19 @@ namespace Satoshi_GUI
                 {
                     if (sf.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                         return;
-                    PlayerHash = sf.PlayerHash;
-                    Bombs = sf.BombCount;
-                    Bets = sf.BetAmmount;
-                    BasebetCost = sf.BetCost / 1000000;
-                    betCost = BasebetCost;
-                    multiplyOnLoss = sf.PercentOnLoss/100;
-                    StopAfterWin = sf.StopAfterWin;
-                    ShowExceptionWindow = sf.ShowExceptionWindow;
-                    useStratergy = sf.UseStrat;
-                    StratergySquares = sf.StratergySquares;
+                    GameConfig = sf.GameConfig;
+                    BasebetCost = GameConfig.BetCost / 1000000;
+                    GameConfig.BetCost = BasebetCost;
+                    multiplyOnLoss = GameConfig.PercentOnLoss / 100;
                     stratergyIndex = 0;
-                    showGameBombs = sf.ShowGameBombs;
-                    gameGroupBox.Text = sf.ConfigTag;
-                    SaveLogToFile = sf.SaveLogToFile;
+                    gameGroupBox.Text = GameConfig.ConfigTag;
                 }
                 // button1.Enabled = false;
                 Log("Starting...");
 
                 PrepRequest("https://satoshimines.com/action/newgame.php");
-                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
-                    Bombs);
+                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash , GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                    GameConfig.BombCount);
                 running = true;
                 button1.Text = "Stop after game.";
                 getPostResponce(newGameresponce, EndNewGameResponce);
@@ -168,7 +154,7 @@ namespace Satoshi_GUI
                 log = outputLog.Lines;
                 outputLog.Clear();
             });
-            if (SaveLog != null && SaveLogToFile && save)
+            if (SaveLog != null && GameConfig.SaveLogToFile && save)
                 SaveLog(log);
         }
 
@@ -179,7 +165,7 @@ namespace Satoshi_GUI
             {
                 log = outputLog.Lines;
             });
-            if (SaveLog != null && SaveLogToFile)
+            if (SaveLog != null && GameConfig.SaveLogToFile)
                 SaveLog(log);
         }
 
@@ -216,16 +202,16 @@ namespace Satoshi_GUI
 
         public int getNextSquare()
         {
-            if (useStratergy)
+            if (GameConfig.UseStrat)
             {
                 lock (this)
                 {
                     
-                    if ((StratergySquares.Length == 1) || (stratergyIndex > StratergySquares.Length - 2))
+                    if ((GameConfig.StratergySquares.Length == 1) || (stratergyIndex > GameConfig.StratergySquares.Length - 2))
                         stratergyIndex = 0;
                     else
                         stratergyIndex++;
-                    return StratergySquares[stratergyIndex] + 1;
+                    return GameConfig.StratergySquares[stratergyIndex] + 1;
                 }
             }
             int i = r.Next(1, 26);
@@ -298,7 +284,7 @@ namespace Satoshi_GUI
                 }
                 if (cd == null || cd.status != "success")
                     throw new Exception();
-                if (showGameBombs)
+                if (GameConfig.ShowGameBombs)
                 {
                     string[] bmbz = cd.mines.Split('-');
                     foreach (string s in bmbz)
@@ -312,7 +298,7 @@ namespace Satoshi_GUI
                 string url = string.Format("https://satoshimines.com/s/{0}/{1}/", cd.game_id, cd.random_string);
                 Log("Url: {0}", url);
                 AddWin();
-                if (StopAfterWin)
+                if (GameConfig.StopAfterWin)
                 {
                     Log("Stop After win is enabled... Stoping...");
                     SaveLogDisk();
@@ -323,8 +309,8 @@ namespace Satoshi_GUI
                 int betSquare = getNextSquare();
                 PrepRequest("https://satoshimines.com/action/newgame.php");
                 byte[] newGameresponce =
-                        Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
-                            Bombs);
+                        Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                            GameConfig.BombCount);
                 if (running)
                     getPostResponce(newGameresponce, EndNewGameResponce);
                 else
@@ -332,7 +318,7 @@ namespace Satoshi_GUI
             }
             catch(Exception ex)
             {
-                if (ShowExceptionWindow)
+                if (GameConfig.ShowExceptionWindow)
                 {
                     using (ExceptionForm except = new ExceptionForm(ex.ToString()))
                     {
@@ -358,18 +344,10 @@ namespace Satoshi_GUI
                     throw new Exception();
                 if (bd.outcome == "bomb")
                 {
-                    Log("Bomb. Loss: {0}", bd.stake);
-                    if (multiplyOnLoss != 1)
-                    {
-                        Log("Betting increced from {0} to {1}", betCost, betCost * multiplyOnLoss);
-                        betCost = betCost * multiplyOnLoss;
-                    }
-                    //string url = string.Format("https://satoshimines.com/s/{0}/{1}/", bd.game_id, bd.random_string);
-                    //Log("Url: {0}", url);
-                    AddLoss();
-                    Log("");
                     bombSquare(bd.guess);
-                    if (showGameBombs)
+                    AddLoss();
+                    Log("Bomb. Loss: {0}", bd.stake);
+                    if (GameConfig.ShowGameBombs)
                     {
                         string[] bmbz = bd.bombs.Split('-');
                         foreach (string s in bmbz)
@@ -379,14 +357,34 @@ namespace Satoshi_GUI
                                 FadebombSquare(bS);
                         }
                     }
-                    PrepRequest("https://satoshimines.com/action/newgame.php");
-                    byte[] newGameresponce =
-                            Bcodes("player_hash={0}&bet={1}&num_mines={2}", PlayerHash, betCost.ToString("0.000000", new CultureInfo("en-US")),
-                                    Bombs);
-                    if (running)
-                        getPostResponce(newGameresponce, EndNewGameResponce);
-                    else
+                    if (GameConfig.StopAfterLoss)
+                    {
+                        Log("Stop After loss is enabled... Stoping...");
+                        SaveLogDisk();
+                        notFirstClear = false;
+                        running = false;
                         BSta(true);
+                    }
+                    else
+                    {
+                        if (multiplyOnLoss != 1)
+                        {
+                            Log("Betting increced from {0} to {1}", GameConfig.BetCost, GameConfig.BetCost * multiplyOnLoss);
+                            GameConfig.BetCost = GameConfig.BetCost * multiplyOnLoss;
+                        }
+                        //string url = string.Format("https://satoshimines.com/s/{0}/{1}/", bd.game_id, bd.random_string);
+                        //Log("Url: {0}", url);
+                        Log("");
+
+                        PrepRequest("https://satoshimines.com/action/newgame.php");
+                        byte[] newGameresponce =
+                                Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                                        GameConfig.BombCount);
+                        if (running)
+                            getPostResponce(newGameresponce, EndNewGameResponce);
+                        else
+                            BSta(true);
+                    }
                 }
                 else
                 {
@@ -394,9 +392,9 @@ namespace Satoshi_GUI
                     glowSquare(bd.guess);
                     int betSquare = getNextSquare();
                     currentBetStreak++;
-                    if (currentBetStreak >= Bets)
+                    if (currentBetStreak >= GameConfig.BetAmmount)
                     {
-                        betCost = BasebetCost;
+                        GameConfig.BetCost = BasebetCost;
                         Log("Cashing out...");
                         PrepRequest("https://satoshimines.com/action/cashout.php");
                         byte[] cashoutResponce =
@@ -418,7 +416,7 @@ namespace Satoshi_GUI
             }
             catch(Exception ex)
             {
-                if (ShowExceptionWindow)
+                if (GameConfig.ShowExceptionWindow)
                 {
                     using (ExceptionForm except = new ExceptionForm(ex.ToString()))
                     {
@@ -463,7 +461,7 @@ namespace Satoshi_GUI
             }
             catch(Exception ex)
             {
-                if (ShowExceptionWindow)
+                if (GameConfig.ShowExceptionWindow)
                 {
                     using (ExceptionForm except = new ExceptionForm(ex.ToString(), new Dictionary<string,string>
                     {
@@ -509,6 +507,11 @@ namespace Satoshi_GUI
 
         private void PrepRequest(string url)
         {
+            if (IsWaiting)
+            {
+                Log("Pausing....");
+                pauser.WaitOne();
+            }
             _httpRequest = (HttpWebRequest)WebRequest.Create(url);
             _httpRequest.Method = "POST";
             _httpRequest.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";//application/x-www-form-urlencoded; charset=UTF-8
@@ -554,6 +557,42 @@ namespace Satoshi_GUI
         }
 
         private void gameGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Clear starts for this game?", "Clear stats", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                loss = 0;
+                wins = 0;
+                ShowWinLosStats();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(!IsWaiting)
+            {
+                IsWaiting = true;
+                button4.Text = "Resume";
+            }
+            else
+            {
+                button4.Text = "Pause";
+                IsWaiting = false;
+                pauser.Set();
+            }
+            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void winStats_Click(object sender, EventArgs e)
         {
 
         }

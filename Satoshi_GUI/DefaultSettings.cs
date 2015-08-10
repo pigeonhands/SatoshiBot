@@ -18,6 +18,7 @@ namespace Satoshi_GUI
         public decimal BetCost { get;  set; }
         public decimal PercentOnLoss { get;  set; }
         public bool StopAfterWin { get;  set; }
+        public bool StopAfterLoss { get; set; }
         public bool ShowExceptionWindow { get;  set; }
         public int[] StratergySquares { get;  set; }
         public bool UseStrat { get;  set; }

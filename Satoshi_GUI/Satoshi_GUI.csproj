@@ -91,6 +91,7 @@
     <Compile Include="Forms\MultiAddForm.Designer.cs">
       <DependentUpon>MultiAddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SatoshiJQueryClasses.cs" />

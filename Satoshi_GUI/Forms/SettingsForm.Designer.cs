@@ -46,11 +46,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cfgTag = new System.Windows.Forms.TextBox();
             this.saveLog = new System.Windows.Forms.CheckBox();
-            this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
+            this.stopAfterLossCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -161,7 +162,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 268);
+            this.button1.Location = new System.Drawing.Point(6, 303);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(261, 23);
             this.button1.TabIndex = 9;
@@ -204,6 +205,7 @@
             this.stopAfterWinCheck.TabIndex = 13;
             this.stopAfterWinCheck.Text = "Stop after win";
             this.stopAfterWinCheck.UseVisualStyleBackColor = true;
+            this.stopAfterWinCheck.CheckedChanged += new System.EventHandler(this.stopAfterWinCheck_CheckedChanged);
             // 
             // showExWindow
             // 
@@ -262,11 +264,21 @@
             // 
             this.groupBox2.Controls.Add(this.stratDisplay);
             this.groupBox2.Controls.Add(this.useStratCheck);
-            this.groupBox2.Location = new System.Drawing.Point(7, 180);
+            this.groupBox2.Location = new System.Drawing.Point(6, 215);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(101, 82);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // stratDisplay
+            // 
+            this.stratDisplay.GridBorder = false;
+            this.stratDisplay.Location = new System.Drawing.Point(19, 20);
+            this.stratDisplay.Name = "stratDisplay";
+            this.stratDisplay.Size = new System.Drawing.Size(57, 57);
+            this.stratDisplay.SquareBorder = true;
+            this.stratDisplay.TabIndex = 18;
+            this.stratDisplay.Text = "satoshiGrid1";
             // 
             // showGBombsCheck
             // 
@@ -304,21 +316,22 @@
             this.saveLog.Text = "Save log to file";
             this.saveLog.UseVisualStyleBackColor = true;
             // 
-            // stratDisplay
+            // stopAfterLossCheck
             // 
-            this.stratDisplay.GridBorder = false;
-            this.stratDisplay.Location = new System.Drawing.Point(19, 20);
-            this.stratDisplay.Name = "stratDisplay";
-            this.stratDisplay.Size = new System.Drawing.Size(57, 57);
-            this.stratDisplay.SquareBorder = true;
-            this.stratDisplay.TabIndex = 18;
-            this.stratDisplay.Text = "satoshiGrid1";
+            this.stopAfterLossCheck.AutoSize = true;
+            this.stopAfterLossCheck.Location = new System.Drawing.Point(7, 181);
+            this.stopAfterLossCheck.Name = "stopAfterLossCheck";
+            this.stopAfterLossCheck.Size = new System.Drawing.Size(93, 17);
+            this.stopAfterLossCheck.TabIndex = 23;
+            this.stopAfterLossCheck.Text = "Stop after loss";
+            this.stopAfterLossCheck.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 296);
+            this.ClientSize = new System.Drawing.Size(272, 338);
+            this.Controls.Add(this.stopAfterLossCheck);
             this.Controls.Add(this.saveLog);
             this.Controls.Add(this.cfgTag);
             this.Controls.Add(this.label6);
@@ -380,5 +393,6 @@
         private System.Windows.Forms.TextBox cfgTag;
         private Controls.SatoshiGrid stratDisplay;
         private System.Windows.Forms.CheckBox saveLog;
+        private System.Windows.Forms.CheckBox stopAfterLossCheck;
     }
 }

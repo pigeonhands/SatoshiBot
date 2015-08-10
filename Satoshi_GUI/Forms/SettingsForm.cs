@@ -14,33 +14,25 @@ namespace Satoshi_GUI
 
     public partial class SettingsForm : Form
     {
-        public int BombCount { get; private set; }
-        public string PlayerHash { get; private set; }
-        public int BetAmmount { get; private set; }
-        public decimal BetCost { get; private set; }
-        public decimal PercentOnLoss { get; private set; }
-        public bool StopAfterWin { get; private set; }
-        public bool ShowExceptionWindow { get; private set; }
-        public int[] StratergySquares { get; private set; }
-        public bool UseStrat { get; private set; }
-        public bool ShowGameBombs { get; private set; }
-        public string ConfigTag { get; private set; }
-        public bool SaveLogToFile { get; private set; }
+        public GameSettings GameConfig { get; private set; }
         private bool settingDefaults = false;
         private bool LoadingDefaults = false;
         public SettingsForm()
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
-            BombCount = 3;
+            GameConfig.BombCount = 3;
         }
         public SettingsForm(DefaultSettings ds)
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
             LoadDefaultSettings(ds);
         }
 
         public SettingsForm(DefaultSettings ds, bool settingDef)
         {
+            GameConfig = new GameSettings();
             InitializeComponent();
             LoadDefaultSettings(ds);
             if(settingDef)
@@ -52,18 +44,19 @@ namespace Satoshi_GUI
 
         private void LoadDefaultSettings(DefaultSettings ds)
         {
+            GameConfig = new GameSettings();
             if (ds == null)
                 return;
             LoadingDefaults = true;
             pHash.Text = ds.PlayerHash;
             numberofBets.Value = ds.BetAmmount;
-            UseStrat = ds.UseStrat;
-            useStratCheck.Checked = UseStrat;
-            StratergySquares = ds.StratergySquares;
-            if (UseStrat)
+            GameConfig.UseStrat = ds.UseStrat;
+            useStratCheck.Checked = GameConfig.UseStrat;
+            GameConfig.StratergySquares = ds.StratergySquares;
+            if (GameConfig.UseStrat)
             {
                 stratDisplay.Reset();
-                foreach (int sv in StratergySquares)
+                foreach (int sv in GameConfig.StratergySquares)
                 {
                     stratDisplay.SetSquare(sv, Brushes.Green);
                 }
@@ -71,6 +64,7 @@ namespace Satoshi_GUI
 
             betCostNUD.Value = ds.BetCost;
             stopAfterWinCheck.Checked = ds.StopAfterWin;
+            stopAfterLossCheck.Checked = ds.StopAfterLoss;
             showExWindow.Checked = ds.ShowExceptionWindow;
             precentOnLoss.Value = ds.PercentOnLoss;
             showGBombsCheck.Checked = ds.ShowGameBombs;
@@ -92,25 +86,26 @@ namespace Satoshi_GUI
                     radioButton4.Checked = true;
                     break;
             }
-            numberofBets.Enabled = !UseStrat;
+            numberofBets.Enabled = !GameConfig.UseStrat;
             LoadingDefaults = false;
         }
 
         public DefaultSettings ToDefaultSettings()
         {
             DefaultSettings ds = new DefaultSettings();
-            ds.BombCount = BombCount;
-            ds.PlayerHash = PlayerHash;
-            ds.BetAmmount = BetAmmount;
-            ds.BetCost = BetCost;
-            ds.PercentOnLoss = PercentOnLoss;
-            ds.StopAfterWin = StopAfterWin;
-            ds.ShowExceptionWindow = ShowExceptionWindow;
-            ds.StratergySquares = StratergySquares;
-            ds.UseStrat = UseStrat;
-            ds.ShowGameBombs = ShowGameBombs;
-            ds.ConfigTag = ConfigTag;
-            ds.SaveLogToFile = SaveLogToFile;
+            ds.BombCount = GameConfig.BombCount;
+            ds.PlayerHash = GameConfig.PlayerHash;
+            ds.BetAmmount = GameConfig.BetAmmount;
+            ds.BetCost = GameConfig.BetCost;
+            ds.PercentOnLoss = GameConfig.PercentOnLoss;
+            ds.StopAfterWin = GameConfig.StopAfterWin;
+            ds.StopAfterLoss = GameConfig.StopAfterLoss;
+            ds.ShowExceptionWindow = GameConfig.ShowExceptionWindow;
+            ds.StratergySquares = GameConfig.StratergySquares;
+            ds.UseStrat = GameConfig.UseStrat;
+            ds.ShowGameBombs = GameConfig.ShowGameBombs;
+            ds.ConfigTag = GameConfig.ConfigTag;
+            ds.SaveLogToFile = GameConfig.SaveLogToFile;
             return ds;
         }
 
@@ -121,42 +116,48 @@ namespace Satoshi_GUI
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            BombCount = 1;
+            GameConfig.BombCount = 1;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            BombCount = 3;
+            GameConfig.BombCount = 3;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            BombCount = 5;
+            GameConfig.BombCount = 5;
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            BombCount = 24;
+            GameConfig.BombCount = 24;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PlayerHash = pHash.Text;
-            BetAmmount = (int)numberofBets.Value;
-            if (UseStrat)
-                BetAmmount = StratergySquares.Length;
-            BetCost = betCostNUD.Value;
-            StopAfterWin = stopAfterWinCheck.Checked;
-            ShowExceptionWindow = showExWindow.Checked;
-            PercentOnLoss = precentOnLoss.Value;
-            ShowGameBombs = showGBombsCheck.Checked;
-            SaveLogToFile = saveLog.Checked;
-            ConfigTag = cfgTag.Text;
+
+            string PlayerHash = pHash.Text;
+
             if (PlayerHash == string.Empty && !settingDefaults)
             {
                 MessageBox.Show("Please enter a hash.");
                 return;
             }
+
+            int BetAmmount = (int)numberofBets.Value;
+            if (GameConfig.UseStrat)
+                BetAmmount = GameConfig.StratergySquares.Length;
+            GameConfig.PlayerHash = PlayerHash;
+            GameConfig.BetAmmount = BetAmmount;
+            GameConfig.BetCost = betCostNUD.Value;
+            GameConfig.StopAfterWin = stopAfterWinCheck.Checked;
+            GameConfig.StopAfterLoss = stopAfterLossCheck.Checked;
+            GameConfig.ShowExceptionWindow = showExWindow.Checked;
+            GameConfig.PercentOnLoss = precentOnLoss.Value;
+            GameConfig.ShowGameBombs = showGBombsCheck.Checked;
+            GameConfig.SaveLogToFile = saveLog.Checked;
+            GameConfig.ConfigTag = cfgTag.Text;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
@@ -178,9 +179,9 @@ namespace Satoshi_GUI
                 {
                     if (sf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        StratergySquares = sf.StratergyArray;
-                        UseStrat = StratergySquares != null && StratergySquares.Length > 0;
-                        if (UseStrat)
+                        GameConfig.StratergySquares = sf.StratergyArray;
+                        GameConfig.UseStrat = GameConfig.StratergySquares != null && GameConfig.StratergySquares.Length > 0;
+                        if (GameConfig.UseStrat)
                         {
                             /*
                             for (int i = 0; i < StratergySquares.Length; i++)
@@ -190,7 +191,7 @@ namespace Satoshi_GUI
                                     stratDisplay.SetSquare(i, Brushes.Green);
                                 }
                             }*/
-                            foreach (int sv in StratergySquares)
+                            foreach (int sv in GameConfig.StratergySquares)
                             {
                                 stratDisplay.SetSquare(sv, Brushes.Green);
                             }
@@ -204,19 +205,24 @@ namespace Satoshi_GUI
                     else
                     {
                         useStratCheck.Checked = false;
-                        UseStrat = false;
+                        GameConfig.UseStrat = false;
                     }
                 }
             }
             else
             {
-                UseStrat = false;
+                GameConfig.UseStrat = false;
                 stratDisplay.Reset();
             }
-            numberofBets.Enabled = !UseStrat;
+            numberofBets.Enabled = !GameConfig.UseStrat;
         }
 
         private void precentOnLoss_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stopAfterWinCheck_CheckedChanged(object sender, EventArgs e)
         {
 
         }

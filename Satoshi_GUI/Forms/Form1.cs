@@ -64,22 +64,25 @@ namespace Satoshi_GUI
                 {
                     Type propertyType = property.PropertyType;
                     var element = settingsElement.Element(property.Name);
-                    if(element.Attribute("Type").Value == propertyType.ToString())
+                    if (element != null)
                     {
-                        if (propertyType == typeof(string))
-                            property.SetValue(Global.DefaultGameSettings, element.Value);
-                        if (propertyType == typeof(int))
-                            property.SetValue(Global.DefaultGameSettings, int.Parse(element.Value));
-                        if (propertyType == typeof(decimal))
-                            property.SetValue(Global.DefaultGameSettings, decimal.Parse(element.Value));
-                        if (propertyType == typeof(bool))
-                            property.SetValue(Global.DefaultGameSettings, element.Value == "1");
-                        if (propertyType == typeof(int[]))
+                        if (element.Attribute("Type").Value == propertyType.ToString())
                         {
-                            if(!string.IsNullOrEmpty(element.Value))
-                                property.SetValue(Global.DefaultGameSettings, element.Value.Split('-').Select(n => int.Parse(n)).ToArray());
+                            if (propertyType == typeof(string))
+                                property.SetValue(Global.DefaultGameSettings, element.Value);
+                            if (propertyType == typeof(int))
+                                property.SetValue(Global.DefaultGameSettings, int.Parse(element.Value));
+                            if (propertyType == typeof(decimal))
+                                property.SetValue(Global.DefaultGameSettings, decimal.Parse(element.Value));
+                            if (propertyType == typeof(bool))
+                                property.SetValue(Global.DefaultGameSettings, element.Value == "1");
+                            if (propertyType == typeof(int[]))
+                            {
+                                if (!string.IsNullOrEmpty(element.Value))
+                                    property.SetValue(Global.DefaultGameSettings, element.Value.Split('-').Select(n => int.Parse(n)).ToArray());
+                            }
+
                         }
-                            
                     }
                 }
             }
