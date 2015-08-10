@@ -283,5 +283,18 @@ namespace Satoshi_GUI
                 }
             }
         }
+
+        private void toolStripLabel6_Click(object sender, EventArgs e)
+        {
+            minimizeTrayIcon.Visible = true;
+            minimizeTrayIcon.ShowBalloonTip(3000);
+            this.Hide();
+        }
+
+        private void minimizeTrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            minimizeTrayIcon.Visible = false;
+        }
     }
 }
