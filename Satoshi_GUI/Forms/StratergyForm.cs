@@ -35,6 +35,11 @@ namespace Satoshi_GUI
             StratergyArray = selectedSquares.ToArray();
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
+
+        private void stratSelector_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
    

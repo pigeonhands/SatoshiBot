@@ -114,7 +114,10 @@ namespace Satoshi_GUI
             {
                 if (squareRects[i].Contains(e.Location)) 
                 {
-                    SetValue(i, 1);
+                    if(squareData[i] == 0)
+                        SetValue(i, 1);
+                    else
+                        SetValue(i, 0);
                 }
             }
         }

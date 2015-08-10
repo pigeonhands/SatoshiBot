@@ -47,9 +47,36 @@
             this.stratSelector.Location = new System.Drawing.Point(2, 1);
             this.stratSelector.Name = "stratSelector";
             this.stratSelector.Size = new System.Drawing.Size(232, 232);
+            this.stratSelector.squareData = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
             this.stratSelector.SquareSpacing = 6;
             this.stratSelector.TabIndex = 2;
             this.stratSelector.Text = "stratGrid1";
+            this.stratSelector.Click += new System.EventHandler(this.stratSelector_Click);
             // 
             // StratergyForm
             // 
