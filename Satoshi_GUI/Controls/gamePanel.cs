@@ -95,6 +95,7 @@ namespace Satoshi_GUI
         {
             if (!running)
             {
+                currentPlayStreak = 0;
                 using (SettingsForm sf = new SettingsForm(Global.DefaultGameSettings))
                 {
                     if (sf.ShowDialog() != System.Windows.Forms.DialogResult.OK)
