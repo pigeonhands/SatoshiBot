@@ -42,11 +42,11 @@
             // 
             // outputLog
             // 
-            this.outputLog.Location = new System.Drawing.Point(118, 52);
+            this.outputLog.Location = new System.Drawing.Point(108, 50);
             this.outputLog.Name = "outputLog";
             this.outputLog.ReadOnly = true;
             this.outputLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.outputLog.Size = new System.Drawing.Size(307, 72);
+            this.outputLog.Size = new System.Drawing.Size(327, 74);
             this.outputLog.TabIndex = 13;
             this.outputLog.Text = "";
             // 
@@ -54,7 +54,7 @@
             // 
             this.winStats.AutoSize = true;
             this.winStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winStats.Location = new System.Drawing.Point(62, 148);
+            this.winStats.Location = new System.Drawing.Point(183, 125);
             this.winStats.Name = "winStats";
             this.winStats.Size = new System.Drawing.Size(145, 16);
             this.winStats.TabIndex = 12;
@@ -65,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 148);
+            this.label2.Location = new System.Drawing.Point(131, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 11;
@@ -75,9 +75,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(118, 13);
+            this.button1.Location = new System.Drawing.Point(9, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 33);
+            this.button1.Size = new System.Drawing.Size(138, 33);
             this.button1.TabIndex = 10;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -86,9 +86,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(274, 13);
+            this.button2.Location = new System.Drawing.Point(297, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 33);
+            this.button2.Size = new System.Drawing.Size(138, 33);
             this.button2.TabIndex = 14;
             this.button2.Text = "Remove";
             this.button2.UseVisualStyleBackColor = true;
@@ -107,16 +107,16 @@
             this.gameGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gameGroupBox.Location = new System.Drawing.Point(7, 3);
             this.gameGroupBox.Name = "gameGroupBox";
-            this.gameGroupBox.Size = new System.Drawing.Size(434, 166);
+            this.gameGroupBox.Size = new System.Drawing.Size(447, 153);
             this.gameGroupBox.TabIndex = 16;
             this.gameGroupBox.TabStop = false;
             this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 128);
+            this.button4.Location = new System.Drawing.Point(153, 12);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(106, 20);
+            this.button4.Size = new System.Drawing.Size(138, 33);
             this.button4.TabIndex = 17;
             this.button4.Text = "Pause";
             this.button4.UseVisualStyleBackColor = true;
@@ -124,20 +124,20 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(118, 128);
+            this.button3.Location = new System.Drawing.Point(108, 123);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 20);
+            this.button3.Size = new System.Drawing.Size(21, 20);
             this.button3.TabIndex = 16;
-            this.button3.Text = "Clear stats";
+            this.button3.Text = "R";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // gameSquares
             // 
             this.gameSquares.GridBorder = true;
-            this.gameSquares.Location = new System.Drawing.Point(7, 19);
+            this.gameSquares.Location = new System.Drawing.Point(9, 50);
             this.gameSquares.Name = "gameSquares";
-            this.gameSquares.Size = new System.Drawing.Size(103, 103);
+            this.gameSquares.Size = new System.Drawing.Size(93, 93);
             this.gameSquares.SquareBorder = true;
             this.gameSquares.TabIndex = 15;
             this.gameSquares.Text = "satoshiGrid1";
@@ -148,7 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gameGroupBox);
             this.Name = "gamePanel";
-            this.Size = new System.Drawing.Size(450, 174);
+            this.Size = new System.Drawing.Size(460, 162);
             this.Load += new System.EventHandler(this.gamePanel_Load);
             this.gameGroupBox.ResumeLayout(false);
             this.gameGroupBox.PerformLayout();

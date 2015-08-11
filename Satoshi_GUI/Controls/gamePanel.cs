@@ -60,7 +60,7 @@ namespace Satoshi_GUI
             {
                 button2.Visible = false;
                // button1.Location = new Point(147, 19);
-                button1.Width = 307;
+               // button1.Width = 307;
             }
         }
 
@@ -337,7 +337,7 @@ namespace Satoshi_GUI
         {
             if (GameConfig.StopAfterGames)
             {
-                currentPlayStreak += 1;
+                currentPlayStreak ++;
                 if (currentPlayStreak > GameConfig.StopAfterGamesAmmount)
                 {
                     Log("Completed {0} games... Stoping...", currentPlayStreak-1);
