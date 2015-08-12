@@ -367,9 +367,11 @@ namespace Satoshi_GUI
                     return null;
                 }
 
+                float checkVal = bd.balance * 1000000;
+
                 if(GameConfig.BalanceStopAbove != -1)
                 {
-                    if(bd.balance > GameConfig.BalanceStopAbove)
+                    if(checkVal > GameConfig.BalanceStopAbove)
                     {
                         ShouldStop = true;
                         return bd;
@@ -378,7 +380,7 @@ namespace Satoshi_GUI
 
                 if(GameConfig.BalanceStopBelow != -1)
                 {
-                    if(bd.balance < GameConfig.BalanceStopBelow)
+                    if(checkVal < GameConfig.BalanceStopBelow)
                     {
                         ShouldStop = true;
                         return bd;
