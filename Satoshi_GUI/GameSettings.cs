@@ -23,5 +23,8 @@ namespace Satoshi_GUI
         public bool SaveLogToFile { get; set; }
         public bool StopAfterGames { get; set; }
         public int StopAfterGamesAmmount { get; set; }
+        public bool CheckBalance { get; set; }
+        public int BalanceStopAbove { get; set; }
+        public int BalanceStopBelow { get; set; }
     }
 }

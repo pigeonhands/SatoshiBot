@@ -302,11 +302,22 @@ namespace Satoshi_GUI
                 AddWin();
                 if (GameConfig.StopAfterWin)
                 {
-                    Log("Stop After win is enabled... Stoping...");
+                    Log("Stop After win is enabled... Stopping...");
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
                 }
+
+                bool ShouldStop = false;
+                var data = BalanceStopShouldStop(out ShouldStop);
+                if (ShouldStop && !running)
+                {
+                    Log("Balance level met ({0} bits)... Stopping...", data.balance);
+                    SaveLogDisk();
+                    notFirstClear = false;
+                    running = false;
+                }
+
                 Log("");
                 int betSquare = getNextSquare();
                 PrepRequest("https://satoshimines.com/action/newgame.php");
@@ -332,6 +343,58 @@ namespace Satoshi_GUI
             }
         }
 
+        BalanceData BalanceStopShouldStop(out bool ShouldStop)
+        {
+            try
+            {
+                if(!GameConfig.CheckBalance)
+                {
+                    ShouldStop = false;
+                    return null;
+                }
+                Log("Checking balance...");
+                string resp = string.Empty;
+                string Parameters = string.Format("secret={0}", GameConfig.PlayerHash);
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                    resp = wc.UploadString(new Uri("https://satoshimines.com/action/refresh_balance.php"), "POST", Parameters);
+                }
+                BalanceData bd = Deserialize<BalanceData>(resp);
+                if (bd == null || bd.status != "success")
+                {
+                    ShouldStop = false;
+                    return null;
+                }
+
+                if(GameConfig.BalanceStopAbove != -1)
+                {
+                    if(bd.balance > GameConfig.BalanceStopAbove)
+                    {
+                        ShouldStop = true;
+                        return bd;
+                    }
+                }
+
+                if(GameConfig.BalanceStopBelow != -1)
+                {
+                    if(bd.balance < GameConfig.BalanceStopBelow)
+                    {
+                        ShouldStop = true;
+                        return bd;
+                    }
+                }
+
+                ShouldStop = false;
+                return null;
+            }
+            catch
+            {
+                ShouldStop = false;
+                return null;
+            }
+            
+        }
 
         void CheckLastGame()
         {
@@ -340,7 +403,7 @@ namespace Satoshi_GUI
                 currentPlayStreak ++;
                 if (currentPlayStreak > GameConfig.StopAfterGamesAmmount)
                 {
-                    Log("Completed {0} games... Stoping...", currentPlayStreak-1);
+                    Log("Completed {0} games... Stopping...", currentPlayStreak-1);
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
@@ -359,6 +422,10 @@ namespace Satoshi_GUI
                 }
                 if (bd == null || bd.status != "success")
                     throw new Exception();
+
+                
+                
+
                 if (bd.outcome == "bomb")
                 {
                     bombSquare(bd.guess);
@@ -374,9 +441,22 @@ namespace Satoshi_GUI
                                 FadebombSquare(bS);
                         }
                     }
+
+                    bool ShouldStop = false;
+                    var data = BalanceStopShouldStop(out ShouldStop);
+
+
                     if (GameConfig.StopAfterLoss && !running)
                     {
-                        Log("Stop After loss is enabled... Stoping...");
+                        Log("Stop After loss is enabled... Stopping...");
+                        SaveLogDisk();
+                        notFirstClear = false;
+                        running = false;
+                        BSta(true);
+                    }
+                    else if (ShouldStop && running)
+                    {
+                        Log("Balance level met ({0} bits)... Stopping...", data.balance);
                         SaveLogDisk();
                         notFirstClear = false;
                         running = false;

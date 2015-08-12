@@ -80,6 +80,6 @@ namespace Satoshi_GUI
     public class BalanceData
     {
         public string status { get; set; }
-        public string balance { get; set; }
+        public float balance { get; set; }
     }
 }

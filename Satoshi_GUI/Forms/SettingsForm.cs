@@ -71,7 +71,30 @@ namespace Satoshi_GUI
             saveLog.Checked = ds.SaveLogToFile;
             cfgTag.Text = ds.ConfigTag;
             stopAfterGamesChecked.Checked = ds.StopAfterGames;
-            if(ds.StopAfterGamesAmmount < 1)
+
+            BalanceStopCheck.Checked = ds.CheckBalance;
+            if(ds.BalanceStopAbove == -1)
+            {
+                balanceStopOverChecked.Checked = false;
+            }
+            else
+            {
+                if(ds.BalanceStopAbove > balanceStopOver.Minimum && ds.BalanceStopAbove < balanceStopOver.Maximum)
+                    balanceStopOver.Value = ds.BalanceStopAbove;
+                balanceStopOverChecked.Checked = true;
+            }
+            if (ds.BalanceStopBelow == -1)
+            {
+                balanceStopUnderChecked.Checked = false;
+            }
+            else
+            {
+                if(ds.BalanceStopBelow > balanceStopUnder.Minimum && ds.BalanceStopBelow < balanceStopUnder.Maximum)
+                    balanceStopUnder.Value = ds.BalanceStopBelow;
+                balanceStopUnderChecked.Checked = true;
+            }
+
+            if (ds.StopAfterGamesAmmount < 1)
                 stopAfterGamesNum.Value = 1;
             else
                 stopAfterGamesNum.Value = ds.StopAfterGamesAmmount;
@@ -114,6 +137,9 @@ namespace Satoshi_GUI
             ds.SaveLogToFile = GameConfig.SaveLogToFile;
             ds.StopAfterGames = GameConfig.StopAfterGames;
             ds.StopAfterGamesAmmount = GameConfig.StopAfterGamesAmmount;
+            ds.BalanceStopAbove = GameConfig.BalanceStopAbove;
+            ds.BalanceStopBelow = GameConfig.BalanceStopBelow;
+            ds.CheckBalance = BalanceStopCheck.Checked;
             return ds;
         }
 
@@ -168,6 +194,9 @@ namespace Satoshi_GUI
             GameConfig.ConfigTag = cfgTag.Text;
             GameConfig.StopAfterGamesAmmount = (int)stopAfterGamesNum.Value;
             GameConfig.StopAfterGames = stopAfterGamesChecked.Checked;
+            GameConfig.CheckBalance = BalanceStopCheck.Checked;
+            GameConfig.BalanceStopAbove = balanceStopOverChecked.Checked ? (int)balanceStopOver.Value : -1;
+            GameConfig.BalanceStopBelow =balanceStopUnderChecked.Checked ? (int)balanceStopUnder.Value : -1;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
@@ -240,6 +269,21 @@ namespace Satoshi_GUI
         private void stopAfterGamesChecked_CheckedChanged(object sender, EventArgs e)
         {
             stopAfterGamesNum.Enabled = stopAfterGamesChecked.Checked;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            balanceStopperGroup.Enabled = BalanceStopCheck.Checked;
+        }
+
+        private void balanceStopUnderChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            balanceStopUnder.Enabled = balanceStopUnderChecked.Checked;
+        }
+
+        private void balanceStopOverChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            balanceStopOver.Enabled = balanceStopOverChecked.Checked;
         }
     }
 }
