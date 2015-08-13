@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,6 +78,9 @@ namespace Satoshi_GUI
             stopAfterGamesChecked.Checked = ds.StopAfterGames;
             percentOnLossReset.Checked = ds.ResetBetMultiplyer;
             PercentOnLossResetGames.Value = ds.ResetBetMultiplyerDeadline;
+            useProxy.Checked = ds.UseProxy;
+            proxyBox.Text = ds.Proxy;
+
 
             BalanceStopCheck.Checked = ds.CheckBalance;
             if(ds.BalanceStopAbove == -1)
@@ -147,6 +152,8 @@ namespace Satoshi_GUI
             ds.CheckBalance = BalanceStopCheck.Checked;
             ds.ResetBetMultiplyer = GameConfig.ResetBetMultiplyer;
             ds.ResetBetMultiplyerDeadline = GameConfig.ResetBetMultiplyerDeadline;
+            ds.Proxy = GameConfig.Proxy;
+            ds.UseProxy = GameConfig.UseProxy;
             return ds;
         }
 
@@ -189,6 +196,8 @@ namespace Satoshi_GUI
             int BetAmmount = (int)numberofBets.Value;
             if (GameConfig.UseStrat)
                 BetAmmount = GameConfig.StratergySquares.Length;
+            GameConfig.UseProxy = useProxy.Checked;
+            GameConfig.Proxy = proxyBox.Text;
             GameConfig.PlayerHash = PlayerHash;
             GameConfig.BetAmmount = BetAmmount;
             GameConfig.BetCost = betCostNUD.Value;
@@ -293,6 +302,36 @@ namespace Satoshi_GUI
         private void balanceStopOverChecked_CheckedChanged(object sender, EventArgs e)
         {
             balanceStopOver.Enabled = balanceStopOverChecked.Checked;
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            proxyGroup.Enabled = useProxy.Checked;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if(proxyBox.Text == string.Empty)
+            {
+                MessageBox.Show("Cant check an empty proxy");
+                return;
+            }
+            try
+            {
+                HttpWebRequest _request = (HttpWebRequest)WebRequest.Create("https://google.com");
+                _request.Proxy = new WebProxy(proxyBox.Text);
+                _request.Timeout = 5000;
+                HttpWebResponse _responce = (HttpWebResponse)_request.GetResponse();
+                using (var s = new StreamReader(_responce.GetResponseStream()))
+                {
+                    var contents = s.ReadToEnd();
+                }
+                MessageBox.Show("Proxy responded successfully!");
+            }
+            catch
+            {
+                MessageBox.Show("Proxy did not respond after 5 seconds");
+            }
         }
     }
 }

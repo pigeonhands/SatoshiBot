@@ -33,6 +33,7 @@ namespace Satoshi_GUI
         private GameData Data;
         private Random r = new Random();
         private HttpWebRequest _httpRequest;
+        private WebProxy Proxy = null;
         
         private bool running = false;
         string lastResponce = string.Empty;
@@ -112,6 +113,17 @@ namespace Satoshi_GUI
                 // button1.Enabled = false;
                 Log("Starting...");
 
+                try
+                {
+                    if(GameConfig.UseProxy && !string.IsNullOrEmpty(GameConfig.Proxy))
+                    {
+                        Proxy = new WebProxy(GameConfig.Proxy);
+                    }
+                }
+                catch
+                {
+                    Proxy = null;
+                }
                 
                 running = true;
                 button1.Text = "Stop after game.";
@@ -652,6 +664,10 @@ namespace Satoshi_GUI
                 pauser.WaitOne();
             }
             _httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            if(Proxy != null)
+            {
+                _httpRequest.Proxy = Proxy;
+            }
            // _httpRequest.Timeout = 5000;
             _httpRequest.Method = "POST";
             _httpRequest.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";//application/x-www-form-urlencoded; charset=UTF-8
