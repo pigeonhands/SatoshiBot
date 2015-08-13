@@ -110,11 +110,12 @@ namespace Satoshi_GUI
                 // button1.Enabled = false;
                 Log("Starting...");
 
-                PrepRequest("https://satoshimines.com/action/newgame.php");
-                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash , GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
-                    GameConfig.BombCount);
+                
                 running = true;
                 button1.Text = "Stop after game.";
+                PrepRequest("https://satoshimines.com/action/newgame.php");
+                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                    GameConfig.BombCount);
                 getPostResponce(newGameresponce, EndNewGameResponce);
             }
             else
@@ -284,6 +285,7 @@ namespace Satoshi_GUI
                     lastResponce = sr.ReadToEnd();
                     cd = Deserialize<CashOutData>(lastResponce);
                 }
+                httpResponce.Close();
                 if (cd == null || cd.status != "success")
                     throw new Exception();
                 if (GameConfig.ShowGameBombs)
@@ -535,6 +537,15 @@ namespace Satoshi_GUI
         {
             try
             {
+
+                HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);
+                using (StreamReader sr = new StreamReader(httpResponce.GetResponseStream()))
+                {
+                    lastResponce = sr.ReadToEnd();
+                    Data = Deserialize<GameData>(lastResponce);
+                }
+                httpResponce.Close();
+
                 CheckLastGame();
                 if (!running)
                 {
@@ -544,12 +555,7 @@ namespace Satoshi_GUI
                     
                 clearSquares();
                 currentBetStreak = 0;
-                HttpWebResponse httpResponce = (HttpWebResponse)_httpRequest.EndGetResponse(AR);
-                using (StreamReader sr = new StreamReader(httpResponce.GetResponseStream()))
-                {
-                    lastResponce = sr.ReadToEnd();
-                    Data = Deserialize<GameData>(lastResponce);
-                }
+                
                 if (Data == null)
                     throw new Exception("Deserialize failed, object is null.");
                 if (Data.status != "success")
@@ -619,6 +625,7 @@ namespace Satoshi_GUI
                 pauser.WaitOne();
             }
             _httpRequest = (HttpWebRequest)WebRequest.Create(url);
+           // _httpRequest.Timeout = 5000;
             _httpRequest.Method = "POST";
             _httpRequest.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";//application/x-www-form-urlencoded; charset=UTF-8
             _httpRequest.UserAgent =
@@ -628,7 +635,7 @@ namespace Satoshi_GUI
         private void getPostResponce(byte[] post, AsyncCallback call)
         {
             _httpRequest.ContentLength = post.Length;
-            _httpRequest.BeginGetRequestStream(endGetRequestStream, new object[] { post, call });
+            var result = _httpRequest.BeginGetRequestStream(endGetRequestStream, new object[] { post, call });
         }
 
         private void endGetRequestStream(IAsyncResult AR)
