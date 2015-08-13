@@ -66,14 +66,15 @@
             this.balanceStopUnder = new System.Windows.Forms.NumericUpDown();
             this.balanceStopUnderChecked = new System.Windows.Forms.CheckBox();
             this.BalanceStopCheck = new System.Windows.Forms.CheckBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.metaBox = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.PercentOnLossResetGames = new System.Windows.Forms.NumericUpDown();
             this.percentOnLossReset = new System.Windows.Forms.CheckBox();
             this.proxyGroup = new System.Windows.Forms.GroupBox();
-            this.useProxy = new System.Windows.Forms.CheckBox();
-            this.proxyBox = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.proxyBox = new System.Windows.Forms.TextBox();
+            this.useProxy = new System.Windows.Forms.CheckBox();
+            this.metaChecked = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -85,7 +86,7 @@
             this.balanceStopperGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopOver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).BeginInit();
-            this.groupBox5.SuspendLayout();
+            this.metaBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).BeginInit();
             this.proxyGroup.SuspendLayout();
             this.SuspendLayout();
@@ -555,19 +556,19 @@
             this.BalanceStopCheck.UseVisualStyleBackColor = true;
             this.BalanceStopCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // groupBox5
+            // metaBox
             // 
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.PercentOnLossResetGames);
-            this.groupBox5.Controls.Add(this.percentOnLossReset);
-            this.groupBox5.Controls.Add(this.precentOnLoss);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Location = new System.Drawing.Point(248, 279);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(180, 70);
-            this.groupBox5.TabIndex = 31;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Meta";
+            this.metaBox.Controls.Add(this.label10);
+            this.metaBox.Controls.Add(this.PercentOnLossResetGames);
+            this.metaBox.Controls.Add(this.percentOnLossReset);
+            this.metaBox.Controls.Add(this.precentOnLoss);
+            this.metaBox.Controls.Add(this.label5);
+            this.metaBox.Enabled = false;
+            this.metaBox.Location = new System.Drawing.Point(248, 279);
+            this.metaBox.Name = "metaBox";
+            this.metaBox.Size = new System.Drawing.Size(180, 70);
+            this.metaBox.TabIndex = 31;
+            this.metaBox.TabStop = false;
             // 
             // label10
             // 
@@ -621,6 +622,23 @@
             this.proxyGroup.TabIndex = 32;
             this.proxyGroup.TabStop = false;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(207, 18);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(22, 23);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "C";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // proxyBox
+            // 
+            this.proxyBox.Location = new System.Drawing.Point(5, 20);
+            this.proxyBox.Name = "proxyBox";
+            this.proxyBox.Size = new System.Drawing.Size(196, 20);
+            this.proxyBox.TabIndex = 0;
+            // 
             // useProxy
             // 
             this.useProxy.AutoSize = true;
@@ -632,31 +650,26 @@
             this.useProxy.UseVisualStyleBackColor = true;
             this.useProxy.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
             // 
-            // proxyBox
+            // metaChecked
             // 
-            this.proxyBox.Location = new System.Drawing.Point(5, 20);
-            this.proxyBox.Name = "proxyBox";
-            this.proxyBox.Size = new System.Drawing.Size(196, 20);
-            this.proxyBox.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(207, 18);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 23);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "C";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.metaChecked.AutoSize = true;
+            this.metaChecked.Location = new System.Drawing.Point(260, 276);
+            this.metaChecked.Name = "metaChecked";
+            this.metaChecked.Size = new System.Drawing.Size(50, 17);
+            this.metaChecked.TabIndex = 34;
+            this.metaChecked.Text = "Meta";
+            this.metaChecked.UseVisualStyleBackColor = true;
+            this.metaChecked.CheckedChanged += new System.EventHandler(this.metaChecked_CheckedChanged);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 439);
+            this.Controls.Add(this.metaChecked);
             this.Controls.Add(this.useProxy);
             this.Controls.Add(this.proxyGroup);
-            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.metaBox);
             this.Controls.Add(this.BalanceStopCheck);
             this.Controls.Add(this.balanceStopperGroup);
             this.Controls.Add(this.groupBox4);
@@ -689,8 +702,8 @@
             this.balanceStopperGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopOver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.metaBox.ResumeLayout(false);
+            this.metaBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).EndInit();
             this.proxyGroup.ResumeLayout(false);
             this.proxyGroup.PerformLayout();
@@ -739,7 +752,7 @@
         private System.Windows.Forms.CheckBox balanceStopOverChecked;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown balanceStopUnder;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox metaBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown PercentOnLossResetGames;
         private System.Windows.Forms.CheckBox percentOnLossReset;
@@ -747,5 +760,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox proxyBox;
         private System.Windows.Forms.CheckBox useProxy;
+        private System.Windows.Forms.CheckBox metaChecked;
     }
 }

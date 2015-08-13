@@ -80,7 +80,7 @@ namespace Satoshi_GUI
             PercentOnLossResetGames.Value = ds.ResetBetMultiplyerDeadline;
             useProxy.Checked = ds.UseProxy;
             proxyBox.Text = ds.Proxy;
-
+            metaChecked.Checked = ds.MetaSettings;
 
             BalanceStopCheck.Checked = ds.CheckBalance;
             if(ds.BalanceStopAbove == -1)
@@ -154,6 +154,7 @@ namespace Satoshi_GUI
             ds.ResetBetMultiplyerDeadline = GameConfig.ResetBetMultiplyerDeadline;
             ds.Proxy = GameConfig.Proxy;
             ds.UseProxy = GameConfig.UseProxy;
+            ds.MetaSettings = GameConfig.MetaSettings;
             return ds;
         }
 
@@ -204,7 +205,7 @@ namespace Satoshi_GUI
             GameConfig.StopAfterWin = stopAfterWinCheck.Checked;
             GameConfig.StopAfterLoss = stopAfterLossCheck.Checked;
             GameConfig.ShowExceptionWindow = showExWindow.Checked;
-            GameConfig.PercentOnLoss = precentOnLoss.Value;
+            
             GameConfig.ShowGameBombs = showGBombsCheck.Checked;
             GameConfig.SaveLogToFile = saveLog.Checked;
             GameConfig.ConfigTag = cfgTag.Text;
@@ -213,8 +214,19 @@ namespace Satoshi_GUI
             GameConfig.CheckBalance = BalanceStopCheck.Checked;
             GameConfig.BalanceStopAbove = balanceStopOverChecked.Checked ? (int)balanceStopOver.Value : -1;
             GameConfig.BalanceStopBelow =balanceStopUnderChecked.Checked ? (int)balanceStopUnder.Value : -1;
-            GameConfig.ResetBetMultiplyer = percentOnLossReset.Checked;
-            GameConfig.ResetBetMultiplyerDeadline = (int)PercentOnLossResetGames.Value;
+            GameConfig.MetaSettings = metaChecked.Checked;
+            if (GameConfig.MetaSettings)
+            {
+                GameConfig.PercentOnLoss = precentOnLoss.Value;
+                GameConfig.ResetBetMultiplyer = percentOnLossReset.Checked;
+                GameConfig.ResetBetMultiplyerDeadline = (int)PercentOnLossResetGames.Value;
+            }
+            else
+            {
+                GameConfig.PercentOnLoss = 100;
+                GameConfig.ResetBetMultiplyer = false;
+                GameConfig.ResetBetMultiplyerDeadline = 2;
+            }
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
@@ -332,6 +344,11 @@ namespace Satoshi_GUI
             {
                 MessageBox.Show("Proxy did not respond after 5 seconds");
             }
+        }
+
+        private void metaChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            metaBox.Enabled = metaChecked.Checked;
         }
     }
 }

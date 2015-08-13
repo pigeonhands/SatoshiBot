@@ -30,5 +30,6 @@ namespace Satoshi_GUI
         public int ResetBetMultiplyerDeadline { get; set; }
         public bool UseProxy { get; set; }
         public string Proxy { get; set; }
+        public bool MetaSettings { get; set; }
     }
 }
