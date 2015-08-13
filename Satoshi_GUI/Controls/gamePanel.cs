@@ -302,23 +302,25 @@ namespace Satoshi_GUI
                 string url = string.Format("https://satoshimines.com/s/{0}/{1}/", cd.game_id, cd.random_string);
                 Log("Url: {0}", url);
                 AddWin();
-                if (GameConfig.StopAfterWin)
+                bool ShouldStop = false;
+                var data = BalanceStopShouldStop(out ShouldStop);
+
+                if (GameConfig.StopAfterWin && running)
                 {
                     Log("Stop After win is enabled... Stopping...");
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
                 }
-
-                bool ShouldStop = false;
-                var data = BalanceStopShouldStop(out ShouldStop);
-                if (ShouldStop && !running)
+                else if (ShouldStop && !running)
                 {
                     Log("Balance level met ({0} bits)... Stopping...", data.balance);
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
                 }
+
+                CheckLastGame();
 
                 Log("");
                 int betSquare = getNextSquare();
@@ -402,12 +404,12 @@ namespace Satoshi_GUI
 
         void CheckLastGame()
         {
-            if (GameConfig.StopAfterGames)
+            if (GameConfig.StopAfterGames && running)
             {
                 currentPlayStreak ++;
-                if (currentPlayStreak > GameConfig.StopAfterGamesAmmount)
+                if (currentPlayStreak > GameConfig.StopAfterGamesAmmount -1)
                 {
-                    Log("Completed {0} games... Stopping...", currentPlayStreak-1);
+                    Log("Completed {0} games... Stopping...", currentPlayStreak);
                     SaveLogDisk();
                     notFirstClear = false;
                     running = false;
@@ -449,6 +451,7 @@ namespace Satoshi_GUI
                     bool ShouldStop = false;
                     var data = BalanceStopShouldStop(out ShouldStop);
 
+                    CheckLastGame();
 
                     if (GameConfig.StopAfterLoss && !running)
                     {
@@ -546,13 +549,6 @@ namespace Satoshi_GUI
                 }
                 httpResponce.Close();
 
-                CheckLastGame();
-                if (!running)
-                {
-                    BSta(true);
-                    return;
-                }
-                    
                 clearSquares();
                 currentBetStreak = 0;
                 
