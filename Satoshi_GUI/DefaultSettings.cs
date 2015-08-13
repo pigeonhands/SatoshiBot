@@ -30,6 +30,8 @@ namespace Satoshi_GUI
         public bool CheckBalance { get; set; }
         public int BalanceStopAbove { get; set; }
         public int BalanceStopBelow { get; set; }
+        public bool ResetBetMultiplyer { get; set; }
+        public int ResetBetMultiplyerDeadline { get; set; }
         public DefaultSettings()
         {
             BetCost = 30;

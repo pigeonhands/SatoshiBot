@@ -51,6 +51,9 @@ namespace Satoshi_GUI
             pHash.Text = ds.PlayerHash;
             numberofBets.Value = ds.BetAmmount;
             GameConfig.UseStrat = ds.UseStrat;
+            GameConfig.ResetBetMultiplyer = ds.ResetBetMultiplyer;
+            GameConfig.ResetBetMultiplyerDeadline = ds.ResetBetMultiplyerDeadline;
+
             useStratCheck.Checked = GameConfig.UseStrat;
             GameConfig.StratergySquares = ds.StratergySquares;
             if (GameConfig.UseStrat)
@@ -71,6 +74,8 @@ namespace Satoshi_GUI
             saveLog.Checked = ds.SaveLogToFile;
             cfgTag.Text = ds.ConfigTag;
             stopAfterGamesChecked.Checked = ds.StopAfterGames;
+            percentOnLossReset.Checked = ds.ResetBetMultiplyer;
+            PercentOnLossResetGames.Value = ds.ResetBetMultiplyerDeadline;
 
             BalanceStopCheck.Checked = ds.CheckBalance;
             if(ds.BalanceStopAbove == -1)
@@ -140,6 +145,8 @@ namespace Satoshi_GUI
             ds.BalanceStopAbove = GameConfig.BalanceStopAbove;
             ds.BalanceStopBelow = GameConfig.BalanceStopBelow;
             ds.CheckBalance = BalanceStopCheck.Checked;
+            ds.ResetBetMultiplyer = GameConfig.ResetBetMultiplyer;
+            ds.ResetBetMultiplyerDeadline = GameConfig.ResetBetMultiplyerDeadline;
             return ds;
         }
 
@@ -197,6 +204,8 @@ namespace Satoshi_GUI
             GameConfig.CheckBalance = BalanceStopCheck.Checked;
             GameConfig.BalanceStopAbove = balanceStopOverChecked.Checked ? (int)balanceStopOver.Value : -1;
             GameConfig.BalanceStopBelow =balanceStopUnderChecked.Checked ? (int)balanceStopUnder.Value : -1;
+            GameConfig.ResetBetMultiplyer = percentOnLossReset.Checked;
+            GameConfig.ResetBetMultiplyerDeadline = (int)PercentOnLossResetGames.Value;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 

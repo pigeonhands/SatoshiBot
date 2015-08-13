@@ -46,6 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cfgTag = new System.Windows.Forms.TextBox();
@@ -58,14 +59,17 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.balanceStopperGroup = new System.Windows.Forms.GroupBox();
-            this.balanceStopUnderChecked = new System.Windows.Forms.CheckBox();
-            this.BalanceStopCheck = new System.Windows.Forms.CheckBox();
-            this.balanceStopUnder = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.balanceStopOver = new System.Windows.Forms.NumericUpDown();
             this.balanceStopOverChecked = new System.Windows.Forms.CheckBox();
-            this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
+            this.label8 = new System.Windows.Forms.Label();
+            this.balanceStopUnder = new System.Windows.Forms.NumericUpDown();
+            this.balanceStopUnderChecked = new System.Windows.Forms.CheckBox();
+            this.BalanceStopCheck = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.percentOnLossReset = new System.Windows.Forms.CheckBox();
+            this.PercentOnLossResetGames = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -75,8 +79,10 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.balanceStopperGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopOver)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -183,7 +189,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(7, 400);
+            this.button1.Location = new System.Drawing.Point(7, 355);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(421, 23);
             this.button1.TabIndex = 9;
@@ -240,7 +246,7 @@
             // 
             // precentOnLoss
             // 
-            this.precentOnLoss.Location = new System.Drawing.Point(96, 100);
+            this.precentOnLoss.Location = new System.Drawing.Point(90, 19);
             this.precentOnLoss.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -252,7 +258,7 @@
             0,
             0});
             this.precentOnLoss.Name = "precentOnLoss";
-            this.precentOnLoss.Size = new System.Drawing.Size(139, 20);
+            this.precentOnLoss.Size = new System.Drawing.Size(84, 20);
             this.precentOnLoss.TabIndex = 15;
             this.precentOnLoss.Value = new decimal(new int[] {
             100,
@@ -264,7 +270,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 102);
+            this.label5.Location = new System.Drawing.Point(6, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 16;
@@ -287,9 +293,19 @@
             this.groupBox2.Controls.Add(this.useStratCheck);
             this.groupBox2.Location = new System.Drawing.Point(264, 157);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(141, 137);
+            this.groupBox2.Size = new System.Drawing.Size(106, 116);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // stratDisplay
+            // 
+            this.stratDisplay.GridBorder = false;
+            this.stratDisplay.Location = new System.Drawing.Point(6, 19);
+            this.stratDisplay.Name = "stratDisplay";
+            this.stratDisplay.Size = new System.Drawing.Size(93, 93);
+            this.stratDisplay.SquareBorder = true;
+            this.stratDisplay.TabIndex = 18;
+            this.stratDisplay.Text = "satoshiGrid1";
             // 
             // showGBombsCheck
             // 
@@ -387,7 +403,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.stopAfterGamesNum);
             this.groupBox1.Controls.Add(this.stopAfterGamesChecked);
-            this.groupBox1.Location = new System.Drawing.Point(7, 190);
+            this.groupBox1.Location = new System.Drawing.Point(7, 166);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(245, 104);
             this.groupBox1.TabIndex = 27;
@@ -414,14 +430,12 @@
             this.groupBox4.Controls.Add(this.radioButton3);
             this.groupBox4.Controls.Add(this.radioButton4);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.numberofBets);
-            this.groupBox4.Controls.Add(this.precentOnLoss);
             this.groupBox4.Controls.Add(this.betCostNUD);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Location = new System.Drawing.Point(7, 54);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(245, 130);
+            this.groupBox4.Size = new System.Drawing.Size(245, 106);
             this.groupBox4.TabIndex = 29;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "General";
@@ -435,69 +449,16 @@
             this.balanceStopperGroup.Controls.Add(this.balanceStopUnder);
             this.balanceStopperGroup.Controls.Add(this.balanceStopUnderChecked);
             this.balanceStopperGroup.Enabled = false;
-            this.balanceStopperGroup.Location = new System.Drawing.Point(7, 300);
+            this.balanceStopperGroup.Location = new System.Drawing.Point(7, 276);
             this.balanceStopperGroup.Name = "balanceStopperGroup";
-            this.balanceStopperGroup.Size = new System.Drawing.Size(235, 94);
+            this.balanceStopperGroup.Size = new System.Drawing.Size(235, 73);
             this.balanceStopperGroup.TabIndex = 30;
             this.balanceStopperGroup.TabStop = false;
-            // 
-            // balanceStopUnderChecked
-            // 
-            this.balanceStopUnderChecked.AutoSize = true;
-            this.balanceStopUnderChecked.Location = new System.Drawing.Point(11, 32);
-            this.balanceStopUnderChecked.Name = "balanceStopUnderChecked";
-            this.balanceStopUnderChecked.Size = new System.Drawing.Size(55, 17);
-            this.balanceStopUnderChecked.TabIndex = 0;
-            this.balanceStopUnderChecked.Text = "Under";
-            this.balanceStopUnderChecked.UseVisualStyleBackColor = true;
-            this.balanceStopUnderChecked.CheckedChanged += new System.EventHandler(this.balanceStopUnderChecked_CheckedChanged);
-            // 
-            // BalanceStopCheck
-            // 
-            this.BalanceStopCheck.AutoSize = true;
-            this.BalanceStopCheck.Location = new System.Drawing.Point(13, 300);
-            this.BalanceStopCheck.Name = "BalanceStopCheck";
-            this.BalanceStopCheck.Size = new System.Drawing.Size(105, 17);
-            this.BalanceStopCheck.TabIndex = 1;
-            this.BalanceStopCheck.Text = "Balance Stopper";
-            this.BalanceStopCheck.UseVisualStyleBackColor = true;
-            this.BalanceStopCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // balanceStopUnder
-            // 
-            this.balanceStopUnder.Location = new System.Drawing.Point(72, 31);
-            this.balanceStopUnder.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            0});
-            this.balanceStopUnder.Minimum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.balanceStopUnder.Name = "balanceStopUnder";
-            this.balanceStopUnder.Size = new System.Drawing.Size(126, 20);
-            this.balanceStopUnder.TabIndex = 1;
-            this.balanceStopUnder.Value = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(204, 38);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(24, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Bits";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(204, 64);
+            this.label9.Location = new System.Drawing.Point(204, 54);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(24, 13);
             this.label9.TabIndex = 5;
@@ -505,7 +466,7 @@
             // 
             // balanceStopOver
             // 
-            this.balanceStopOver.Location = new System.Drawing.Point(72, 57);
+            this.balanceStopOver.Location = new System.Drawing.Point(72, 47);
             this.balanceStopOver.Maximum = new decimal(new int[] {
             1215752192,
             23,
@@ -528,7 +489,7 @@
             // balanceStopOverChecked
             // 
             this.balanceStopOverChecked.AutoSize = true;
-            this.balanceStopOverChecked.Location = new System.Drawing.Point(11, 58);
+            this.balanceStopOverChecked.Location = new System.Drawing.Point(11, 48);
             this.balanceStopOverChecked.Name = "balanceStopOverChecked";
             this.balanceStopOverChecked.Size = new System.Drawing.Size(49, 17);
             this.balanceStopOverChecked.TabIndex = 3;
@@ -536,21 +497,120 @@
             this.balanceStopOverChecked.UseVisualStyleBackColor = true;
             this.balanceStopOverChecked.CheckedChanged += new System.EventHandler(this.balanceStopOverChecked_CheckedChanged);
             // 
-            // stratDisplay
+            // label8
             // 
-            this.stratDisplay.GridBorder = false;
-            this.stratDisplay.Location = new System.Drawing.Point(19, 20);
-            this.stratDisplay.Name = "stratDisplay";
-            this.stratDisplay.Size = new System.Drawing.Size(103, 103);
-            this.stratDisplay.SquareBorder = true;
-            this.stratDisplay.TabIndex = 18;
-            this.stratDisplay.Text = "satoshiGrid1";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(204, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Bits";
+            // 
+            // balanceStopUnder
+            // 
+            this.balanceStopUnder.Location = new System.Drawing.Point(72, 21);
+            this.balanceStopUnder.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.balanceStopUnder.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.balanceStopUnder.Name = "balanceStopUnder";
+            this.balanceStopUnder.Size = new System.Drawing.Size(126, 20);
+            this.balanceStopUnder.TabIndex = 1;
+            this.balanceStopUnder.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            // 
+            // balanceStopUnderChecked
+            // 
+            this.balanceStopUnderChecked.AutoSize = true;
+            this.balanceStopUnderChecked.Location = new System.Drawing.Point(11, 22);
+            this.balanceStopUnderChecked.Name = "balanceStopUnderChecked";
+            this.balanceStopUnderChecked.Size = new System.Drawing.Size(55, 17);
+            this.balanceStopUnderChecked.TabIndex = 0;
+            this.balanceStopUnderChecked.Text = "Under";
+            this.balanceStopUnderChecked.UseVisualStyleBackColor = true;
+            this.balanceStopUnderChecked.CheckedChanged += new System.EventHandler(this.balanceStopUnderChecked_CheckedChanged);
+            // 
+            // BalanceStopCheck
+            // 
+            this.BalanceStopCheck.AutoSize = true;
+            this.BalanceStopCheck.Location = new System.Drawing.Point(13, 273);
+            this.BalanceStopCheck.Name = "BalanceStopCheck";
+            this.BalanceStopCheck.Size = new System.Drawing.Size(99, 17);
+            this.BalanceStopCheck.TabIndex = 1;
+            this.BalanceStopCheck.Text = "Balance Check";
+            this.BalanceStopCheck.UseVisualStyleBackColor = true;
+            this.BalanceStopCheck.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.PercentOnLossResetGames);
+            this.groupBox5.Controls.Add(this.percentOnLossReset);
+            this.groupBox5.Controls.Add(this.precentOnLoss);
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Location = new System.Drawing.Point(248, 279);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(180, 70);
+            this.groupBox5.TabIndex = 31;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Meta";
+            // 
+            // percentOnLossReset
+            // 
+            this.percentOnLossReset.AutoSize = true;
+            this.percentOnLossReset.Location = new System.Drawing.Point(10, 41);
+            this.percentOnLossReset.Name = "percentOnLossReset";
+            this.percentOnLossReset.Size = new System.Drawing.Size(79, 17);
+            this.percentOnLossReset.TabIndex = 17;
+            this.percentOnLossReset.Text = "Reset After";
+            this.percentOnLossReset.UseVisualStyleBackColor = true;
+            // 
+            // PercentOnLossResetGames
+            // 
+            this.PercentOnLossResetGames.Location = new System.Drawing.Point(90, 40);
+            this.PercentOnLossResetGames.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.PercentOnLossResetGames.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PercentOnLossResetGames.Name = "PercentOnLossResetGames";
+            this.PercentOnLossResetGames.Size = new System.Drawing.Size(48, 20);
+            this.PercentOnLossResetGames.TabIndex = 18;
+            this.PercentOnLossResetGames.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(140, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Game";
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 425);
+            this.ClientSize = new System.Drawing.Size(437, 384);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.BalanceStopCheck);
             this.Controls.Add(this.balanceStopperGroup);
             this.Controls.Add(this.groupBox4);
@@ -581,8 +641,11 @@
             this.groupBox4.PerformLayout();
             this.balanceStopperGroup.ResumeLayout(false);
             this.balanceStopperGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.balanceStopOver)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balanceStopUnder)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -628,5 +691,9 @@
         private System.Windows.Forms.CheckBox balanceStopOverChecked;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown balanceStopUnder;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown PercentOnLossResetGames;
+        private System.Windows.Forms.CheckBox percentOnLossReset;
     }
 }

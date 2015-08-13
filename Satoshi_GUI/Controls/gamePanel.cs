@@ -23,6 +23,7 @@ namespace Satoshi_GUI
         private decimal BasebetCost = 0;
         private int currentBetStreak = 0;
         private int currentPlayStreak = 0;
+        private int MultiplyDeadlineTracker = 0;
 
         public event OnRemoveCallback OnRemove;
         public event SaveLogDelegate SaveLog;
@@ -58,7 +59,8 @@ namespace Satoshi_GUI
             Log("uid=2388291");
             if (hideStop)
             {
-                button2.Visible = false;
+                //button2.Visible = false;
+                button2.Enabled = false;
                // button1.Location = new Point(147, 19);
                // button1.Width = 307;
             }
@@ -373,6 +375,11 @@ namespace Satoshi_GUI
 
                 float checkVal = bd.balance * 1000000;
 
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    liveBitsBox.Text = string.Format("Bits | {0}", checkVal);
+                });
+
                 if(GameConfig.BalanceStopAbove != -1)
                 {
                     if(checkVal > GameConfig.BalanceStopAbove)
@@ -471,11 +478,34 @@ namespace Satoshi_GUI
                     }
                     else
                     {
-                        if (multiplyOnLoss != 1)
+                        if (GameConfig.ResetBetMultiplyer)
                         {
-                            Log("Betting increced from {0} to {1}", GameConfig.BetCost, GameConfig.BetCost * multiplyOnLoss);
-                            GameConfig.BetCost = GameConfig.BetCost * multiplyOnLoss;
+                            if (MultiplyDeadlineTracker >= GameConfig.ResetBetMultiplyerDeadline)
+                            {
+                                Log("Resetting bet cost from {0} to {1}", GameConfig.BetCost, BasebetCost);
+                                GameConfig.BetCost = BasebetCost;
+                                MultiplyDeadlineTracker = 0;
+                            }
+                            else
+                            {
+                                if (multiplyOnLoss != 1)
+                                {
+                                    Log("Betting increced from {0} to {1}", GameConfig.BetCost, GameConfig.BetCost * multiplyOnLoss);
+                                    GameConfig.BetCost = GameConfig.BetCost * multiplyOnLoss;
+                                    MultiplyDeadlineTracker++;
+                                }
+                            }
+                           
                         }
+                        else
+                        {
+                            if (multiplyOnLoss != 1)
+                            {
+                                Log("Betting increced from {0} to {1}", GameConfig.BetCost, GameConfig.BetCost * multiplyOnLoss);
+                                GameConfig.BetCost = GameConfig.BetCost * multiplyOnLoss;
+                            }
+                        }
+
                         //string url = string.Format("https://satoshimines.com/s/{0}/{1}/", bd.game_id, bd.random_string);
                         //Log("Url: {0}", url);
                         Log("");
@@ -499,6 +529,7 @@ namespace Satoshi_GUI
                     if (currentBetStreak >= GameConfig.BetAmmount)
                     {
                         GameConfig.BetCost = BasebetCost;
+                        MultiplyDeadlineTracker = 0;
                         Log("Cashing out...");
                         PrepRequest("https://satoshimines.com/action/cashout.php");
                         byte[] cashoutResponce =
