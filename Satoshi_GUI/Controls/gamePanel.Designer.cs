@@ -62,7 +62,6 @@
             this.winStats.Size = new System.Drawing.Size(145, 16);
             this.winStats.TabIndex = 12;
             this.winStats.Text = "0% | Wins: 0 | Losses: 0";
-            this.winStats.Click += new System.EventHandler(this.winStats_Click);
             // 
             // label2
             // 
@@ -73,7 +72,6 @@
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Win %:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button1
             // 
@@ -114,7 +112,6 @@
             this.gameGroupBox.Size = new System.Drawing.Size(451, 176);
             this.gameGroupBox.TabIndex = 16;
             this.gameGroupBox.TabStop = false;
-            this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
             // liveBitsBox
             // 
@@ -168,7 +165,6 @@
             this.Controls.Add(this.gameGroupBox);
             this.Name = "gamePanel";
             this.Size = new System.Drawing.Size(461, 188);
-            this.Load += new System.EventHandler(this.gamePanel_Load);
             this.gameGroupBox.ResumeLayout(false);
             this.gameGroupBox.PerformLayout();
             this.ResumeLayout(false);

@@ -733,20 +733,10 @@ namespace Satoshi_GUI
             }
         }
 
-        private void gamePanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (OnRemove != null)
                 OnRemove(this);
-        }
-
-        private void gameGroupBox_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -773,16 +763,6 @@ namespace Satoshi_GUI
                 pauser.Set();
             }
             
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void winStats_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
