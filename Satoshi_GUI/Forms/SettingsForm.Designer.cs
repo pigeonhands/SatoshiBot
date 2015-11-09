@@ -46,6 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.useStratCheck = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.stratDisplay = new Satoshi_GUI.Controls.SatoshiGrid();
             this.showGBombsCheck = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.proxyBox = new System.Windows.Forms.TextBox();
             this.useProxy = new System.Windows.Forms.CheckBox();
             this.metaChecked = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -304,6 +304,18 @@
             this.groupBox2.Size = new System.Drawing.Size(156, 158);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(5, 134);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(139, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Use Advanced Startegy";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_2);
             // 
             // stratDisplay
             // 
@@ -662,17 +674,6 @@
             this.metaChecked.Text = "Meta";
             this.metaChecked.UseVisualStyleBackColor = true;
             this.metaChecked.CheckedChanged += new System.EventHandler(this.metaChecked_CheckedChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 134);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(139, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Use Advanced Startegy";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_2);
             // 
             // SettingsForm
             // 
