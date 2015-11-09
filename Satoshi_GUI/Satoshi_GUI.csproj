@@ -55,6 +55,12 @@
       <DependentUpon>StartergyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="DefaultSettings.cs" />
+    <Compile Include="Forms\AdvancedStratForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdvancedStratForm.Designer.cs">
+      <DependentUpon>AdvancedStratForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CheckBalanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
     <Compile Include="Forms\InputTextForm.Designer.cs">
       <DependentUpon>InputTextForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\manualBetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\manualBetForm.Designer.cs">
+      <DependentUpon>manualBetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MultiAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +125,9 @@
     <EmbeddedResource Include="Controls\StartergyGrid.resx">
       <DependentUpon>StartergyGrid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdvancedStratForm.resx">
+      <DependentUpon>AdvancedStratForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CheckBalanceForm.resx">
       <DependentUpon>CheckBalanceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputTextForm.resx">
       <DependentUpon>InputTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\manualBetForm.resx">
+      <DependentUpon>manualBetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MultiAddForm.resx">
       <DependentUpon>MultiAddForm.cs</DependentUpon>

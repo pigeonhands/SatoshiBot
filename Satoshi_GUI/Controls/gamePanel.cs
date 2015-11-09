@@ -39,10 +39,14 @@ namespace Satoshi_GUI
         string lastResponce = string.Empty;
         string lastSent = string.Empty;
 
+        string postExtention = "&bd=9442";
+
         private decimal multiplyOnLoss = 1;
         private int stratergyIndex = 0;
         private bool notFirstClear = false;
         private bool IsWaiting = false;
+
+        private int[] SquareRepeatData = null;
 
         public gamePanel()
         {
@@ -87,7 +91,7 @@ namespace Satoshi_GUI
             sf.Dispose();
             Log("Starting...");
             PrepRequest("https://satoshimines.com/action/newgame.php");
-            byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+            byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                 GameConfig.BombCount);
             running = true;
             button1.Text = "Stop after game.";
@@ -128,7 +132,7 @@ namespace Satoshi_GUI
                 running = true;
                 button1.Text = "Stop after game.";
                 PrepRequest("https://satoshimines.com/action/newgame.php");
-                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                byte[] newGameresponce = Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                     GameConfig.BombCount);
                 getPostResponce(newGameresponce, EndNewGameResponce);
             }
@@ -340,7 +344,7 @@ namespace Satoshi_GUI
                 int betSquare = getNextSquare();
                 PrepRequest("https://satoshimines.com/action/newgame.php");
                 byte[] newGameresponce =
-                        Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                        Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                             GameConfig.BombCount);
                 if (running)
                     getPostResponce(newGameresponce, EndNewGameResponce);
@@ -456,14 +460,42 @@ namespace Satoshi_GUI
                     bombSquare(bd.guess);
                     AddLoss();
                     Log("Bomb. Loss: {0}", bd.stake);
+                    string[] bmbz = bd.bombs.Split('-');
                     if (GameConfig.ShowGameBombs)
                     {
-                        string[] bmbz = bd.bombs.Split('-');
                         foreach (string s in bmbz)
                         {
                             int bS;
                             if (int.TryParse(s, out bS))
                                 FadebombSquare(bS);
+                        }
+                    }
+
+                    if(GameConfig.CheckForSquareRepeat)
+                    {
+                        if (SquareRepeatData == null)
+                        {
+                            SquareRepeatData = new int[bmbz.Length];
+                            int sint;
+                            for (int i = 0; i < SquareRepeatData.Length; i++)
+                            {
+                                SquareRepeatData[i] = 0;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < SquareRepeatData.Length; i++)
+                            {
+                                if (bmbz.Contains(i.ToString()))
+                                    SquareRepeatData[i]++;
+                                else
+                                    SquareRepeatData[i] = 0;
+                                if(SquareRepeatData[i] >= 5)
+                                {
+                                    running = false;
+                                    MessageBox.Show(string.Format("Square {0} has been a bomb 5 times", i));
+                                }
+                            }
                         }
                     }
 
@@ -524,7 +556,7 @@ namespace Satoshi_GUI
 
                         PrepRequest("https://satoshimines.com/action/newgame.php");
                         byte[] newGameresponce =
-                                Bcodes("player_hash={0}&bet={1}&num_mines={2}", GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
+                                Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                                         GameConfig.BombCount);
                         if (running)
                             getPostResponce(newGameresponce, EndNewGameResponce);
@@ -554,7 +586,7 @@ namespace Satoshi_GUI
                         Log("betting square {0}", betSquare);
                         PrepRequest("https://satoshimines.com/action/checkboard.php");
                         byte[] betResponce =
-                            Bcodes("game_hash={0}&guess={1}&v04=1", Data.game_hash, betSquare);
+                            Bcodes("game_hash={0}&guess={1}&v04=1" + postExtention, Data.game_hash, betSquare);
                         getPostResponce(betResponce, EndBetResponce);
                     }
 
@@ -607,7 +639,7 @@ namespace Satoshi_GUI
                 Log("betting square {0}", betSquare);
                 PrepRequest("https://satoshimines.com/action/checkboard.php");
                 byte[] betResponce =
-                    Bcodes("game_hash={0}&guess={1}&v04=1", Data.game_hash, betSquare);
+                    Bcodes("game_hash={0}&guess={1}&v04=1" + postExtention, Data.game_hash, betSquare);
                 getPostResponce(betResponce, EndBetResponce);
             }
             catch(Exception ex)

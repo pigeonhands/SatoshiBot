@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.outputLog = new System.Windows.Forms.RichTextBox();
             this.winStats = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.gameGroupBox = new System.Windows.Forms.GroupBox();
+            this.liveBitsBox = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.liveBitsBox = new System.Windows.Forms.TextBox();
             this.gameSquares = new Satoshi_GUI.Controls.SatoshiGrid();
+            this.cmManualBet = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.gameGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,6 +116,15 @@
             this.gameGroupBox.TabStop = false;
             this.gameGroupBox.Enter += new System.EventHandler(this.gameGroupBox_Enter);
             // 
+            // liveBitsBox
+            // 
+            this.liveBitsBox.Location = new System.Drawing.Point(6, 12);
+            this.liveBitsBox.Name = "liveBitsBox";
+            this.liveBitsBox.ReadOnly = true;
+            this.liveBitsBox.Size = new System.Drawing.Size(93, 20);
+            this.liveBitsBox.TabIndex = 18;
+            this.liveBitsBox.Text = "Bits | Disabled";
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(6, 224);
@@ -134,17 +145,9 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // liveBitsBox
-            // 
-            this.liveBitsBox.Location = new System.Drawing.Point(6, 12);
-            this.liveBitsBox.Name = "liveBitsBox";
-            this.liveBitsBox.ReadOnly = true;
-            this.liveBitsBox.Size = new System.Drawing.Size(93, 20);
-            this.liveBitsBox.TabIndex = 18;
-            this.liveBitsBox.Text = "Bits | Disabled";
-            // 
             // gameSquares
             // 
+            this.gameSquares.ContextMenuStrip = this.cmManualBet;
             this.gameSquares.GridBorder = true;
             this.gameSquares.Location = new System.Drawing.Point(6, 35);
             this.gameSquares.Name = "gameSquares";
@@ -152,6 +155,11 @@
             this.gameSquares.SquareBorder = true;
             this.gameSquares.TabIndex = 15;
             this.gameSquares.Text = "satoshiGrid1";
+            // 
+            // cmManualBet
+            // 
+            this.cmManualBet.Name = "cmManualBet";
+            this.cmManualBet.Size = new System.Drawing.Size(153, 26);
             // 
             // gamePanel
             // 
@@ -179,5 +187,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox liveBitsBox;
+        private System.Windows.Forms.ContextMenuStrip cmManualBet;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Satoshi_GUI.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -349,6 +350,29 @@ namespace Satoshi_GUI
         private void metaChecked_CheckedChanged(object sender, EventArgs e)
         {
             metaBox.Enabled = metaChecked.Checked;
+        }
+
+        private void checkBox1_CheckedChanged_2(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                using (var str = new AdvancedStratForm())
+                {
+                    if (str.ShowDialog() == DialogResult.OK)
+                    {
+                        numberofBets.Enabled = false;
+                        betCostNUD.Enabled = false;
+                        useStratCheck.Checked = false;
+                        useStratCheck.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                numberofBets.Enabled = true;
+                betCostNUD.Enabled = true;
+                useStratCheck.Enabled = true;
+            }
         }
     }
 }

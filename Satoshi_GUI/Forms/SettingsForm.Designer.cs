@@ -75,6 +75,7 @@
             this.proxyBox = new System.Windows.Forms.TextBox();
             this.useProxy = new System.Windows.Forms.CheckBox();
             this.metaChecked = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -285,7 +286,7 @@
             // useStratCheck
             // 
             this.useStratCheck.AutoSize = true;
-            this.useStratCheck.Location = new System.Drawing.Point(5, 1);
+            this.useStratCheck.Location = new System.Drawing.Point(2, 1);
             this.useStratCheck.Name = "useStratCheck";
             this.useStratCheck.Size = new System.Drawing.Size(87, 17);
             this.useStratCheck.TabIndex = 17;
@@ -295,20 +296,21 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.stratDisplay);
             this.groupBox2.Controls.Add(this.useStratCheck);
-            this.groupBox2.Location = new System.Drawing.Point(264, 157);
+            this.groupBox2.Location = new System.Drawing.Point(261, 157);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(106, 116);
+            this.groupBox2.Size = new System.Drawing.Size(156, 158);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             // 
             // stratDisplay
             // 
             this.stratDisplay.GridBorder = false;
-            this.stratDisplay.Location = new System.Drawing.Point(6, 19);
+            this.stratDisplay.Location = new System.Drawing.Point(18, 19);
             this.stratDisplay.Name = "stratDisplay";
-            this.stratDisplay.Size = new System.Drawing.Size(93, 93);
+            this.stratDisplay.Size = new System.Drawing.Size(114, 114);
             this.stratDisplay.SquareBorder = true;
             this.stratDisplay.TabIndex = 18;
             this.stratDisplay.Text = "satoshiGrid1";
@@ -564,7 +566,7 @@
             this.metaBox.Controls.Add(this.precentOnLoss);
             this.metaBox.Controls.Add(this.label5);
             this.metaBox.Enabled = false;
-            this.metaBox.Location = new System.Drawing.Point(248, 279);
+            this.metaBox.Location = new System.Drawing.Point(246, 335);
             this.metaBox.Name = "metaBox";
             this.metaBox.Size = new System.Drawing.Size(180, 70);
             this.metaBox.TabIndex = 31;
@@ -653,7 +655,7 @@
             // metaChecked
             // 
             this.metaChecked.AutoSize = true;
-            this.metaChecked.Location = new System.Drawing.Point(260, 276);
+            this.metaChecked.Location = new System.Drawing.Point(258, 332);
             this.metaChecked.Name = "metaChecked";
             this.metaChecked.Size = new System.Drawing.Size(50, 17);
             this.metaChecked.TabIndex = 34;
@@ -661,11 +663,22 @@
             this.metaChecked.UseVisualStyleBackColor = true;
             this.metaChecked.CheckedChanged += new System.EventHandler(this.metaChecked_CheckedChanged);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(5, 134);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(139, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Use Advanced Startegy";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_2);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 439);
+            this.ClientSize = new System.Drawing.Size(435, 439);
             this.Controls.Add(this.metaChecked);
             this.Controls.Add(this.useProxy);
             this.Controls.Add(this.proxyGroup);
@@ -761,5 +774,6 @@
         private System.Windows.Forms.TextBox proxyBox;
         private System.Windows.Forms.CheckBox useProxy;
         private System.Windows.Forms.CheckBox metaChecked;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
