@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Json;
 using System.Net;
 using System.Globalization;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Satoshi_GUI
 {
@@ -34,12 +35,14 @@ namespace Satoshi_GUI
         private Random r = new Random();
         private HttpWebRequest _httpRequest;
         private WebProxy Proxy = null;
-        
+
+        private Regex rBDVal = new Regex("var bdval = '(\\d+)'");
+
         private bool running = false;
         string lastResponce = string.Empty;
         string lastSent = string.Empty;
 
-        string postExtention = "&bd=9442";
+        string postExtention = string.Empty;
 
         private decimal multiplyOnLoss = 1;
         private int stratergyIndex = 0;
@@ -128,7 +131,66 @@ namespace Satoshi_GUI
                 {
                     Proxy = null;
                 }
-                
+
+                prepairPostExtention();
+            }
+            else
+            {
+                button1.Text = "Stopping after game...";
+                button1.Enabled = false;
+                running = false;
+            }
+        }
+
+        private void prepairPostExtention()
+        {
+            using (WebClient bdvalReq = new WebClient())
+            {
+                button1.Enabled = false;
+                Log("Getting bdval...");
+                bdvalReq.Proxy = Proxy;
+                bdvalReq.DownloadStringCompleted += BdvalReq_DownloadStringCompleted;
+                bdvalReq.DownloadStringTaskAsync(string.Format("https://www.satoshimines.com/play/{0}", GameConfig.PlayerHash));
+            }
+        }
+
+
+        private void BdvalReq_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            try
+            {
+                string reqVal = e.Result;
+                Match bdMatch = rBDVal.Match(reqVal);
+                if (!bdMatch.Success)
+                    throw new Exception("Regex failed to match.");
+
+                string bdvalStr = bdMatch.Groups[1].Value;
+                if(string.IsNullOrWhiteSpace(bdvalStr))
+                    throw new Exception("Invalid bdvalue.");
+
+                postExtention = string.Format("&bd={0}", bdvalStr);
+                Log("Got bdval: {0}", bdvalStr);
+            }
+            catch (Exception ex)
+            {
+                Log("Failed to get bdval.");
+                if (GameConfig.ShowExceptionWindow)
+                {
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    {
+                        except.ShowDialog();
+                    }
+                }
+                return;
+            }
+            StartGame();
+        }
+
+        void StartGame()
+        {
+            try
+            {
+                button1.Enabled = true;
                 running = true;
                 button1.Text = "Stop after game.";
                 PrepRequest("https://satoshimines.com/action/newgame.php");
@@ -136,11 +198,16 @@ namespace Satoshi_GUI
                     GameConfig.BombCount);
                 getPostResponce(newGameresponce, EndNewGameResponce);
             }
-            else
+            catch (Exception ex)
             {
-                button1.Text = "Stopping after game...";
-                button1.Enabled = false;
-                running = false;
+                Log("Failed to start game.");
+                if (GameConfig.ShowExceptionWindow)
+                {
+                    using (ExceptionForm except = new ExceptionForm(ex.ToString()))
+                    {
+                        except.ShowDialog();
+                    }
+                }
             }
         }
 
