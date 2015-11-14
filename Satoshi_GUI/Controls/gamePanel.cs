@@ -625,10 +625,21 @@ namespace Satoshi_GUI
                         byte[] newGameresponce =
                                 Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                                         GameConfig.BombCount);
+
+                        if (GameConfig.GameDelay != 0 && running)
+                        {
+                            Log("Waiting {0}ms...", GameConfig.GameDelay);
+                            Thread.Sleep(GameConfig.GameDelay);
+                        }
                         if (running)
+                        {
+                            
                             getPostResponce(newGameresponce, EndNewGameResponce);
+                        }
                         else
+                        {
                             BSta(true);
+                        }
                     }
                 }
                 else

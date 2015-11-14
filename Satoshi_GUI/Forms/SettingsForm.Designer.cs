@@ -76,6 +76,9 @@
             this.proxyBox = new System.Windows.Forms.TextBox();
             this.useProxy = new System.Windows.Forms.CheckBox();
             this.metaChecked = new System.Windows.Forms.CheckBox();
+            this.nudDelay = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numberofBets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).BeginInit();
@@ -90,6 +93,7 @@
             this.metaBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).BeginInit();
             this.proxyGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -286,7 +290,7 @@
             // useStratCheck
             // 
             this.useStratCheck.AutoSize = true;
-            this.useStratCheck.Location = new System.Drawing.Point(2, 1);
+            this.useStratCheck.Location = new System.Drawing.Point(267, 178);
             this.useStratCheck.Name = "useStratCheck";
             this.useStratCheck.Size = new System.Drawing.Size(87, 17);
             this.useStratCheck.TabIndex = 17;
@@ -296,19 +300,17 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.stratDisplay);
-            this.groupBox2.Controls.Add(this.useStratCheck);
-            this.groupBox2.Location = new System.Drawing.Point(261, 157);
+            this.groupBox2.Location = new System.Drawing.Point(261, 181);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(156, 158);
+            this.groupBox2.Size = new System.Drawing.Size(156, 133);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 134);
+            this.checkBox1.Location = new System.Drawing.Point(457, 31);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(139, 17);
             this.checkBox1.TabIndex = 19;
@@ -432,12 +434,15 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.nudDelay);
             this.groupBox3.Controls.Add(this.showExWindow);
             this.groupBox3.Controls.Add(this.saveLog);
             this.groupBox3.Controls.Add(this.showGBombsCheck);
             this.groupBox3.Location = new System.Drawing.Point(258, 54);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(170, 97);
+            this.groupBox3.Size = new System.Drawing.Size(170, 121);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Extra";
@@ -675,11 +680,43 @@
             this.metaChecked.UseVisualStyleBackColor = true;
             this.metaChecked.CheckedChanged += new System.EventHandler(this.metaChecked_CheckedChanged);
             // 
+            // nudDelay
+            // 
+            this.nudDelay.Location = new System.Drawing.Point(46, 88);
+            this.nudDelay.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nudDelay.Name = "nudDelay";
+            this.nudDelay.Size = new System.Drawing.Size(68, 20);
+            this.nudDelay.TabIndex = 23;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 90);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Delay:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(120, 90);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(20, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "ms";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 439);
+            this.ClientSize = new System.Drawing.Size(432, 439);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.useStratCheck);
             this.Controls.Add(this.metaChecked);
             this.Controls.Add(this.useProxy);
             this.Controls.Add(this.proxyGroup);
@@ -704,7 +741,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.betCostNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.precentOnLoss)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stopAfterGamesNum)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -721,6 +757,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PercentOnLossResetGames)).EndInit();
             this.proxyGroup.ResumeLayout(false);
             this.proxyGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,5 +813,8 @@
         private System.Windows.Forms.CheckBox useProxy;
         private System.Windows.Forms.CheckBox metaChecked;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown nudDelay;
     }
 }

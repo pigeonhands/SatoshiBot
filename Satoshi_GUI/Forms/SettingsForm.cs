@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -83,6 +84,8 @@ namespace Satoshi_GUI
             proxyBox.Text = ds.Proxy;
             metaChecked.Checked = ds.MetaSettings;
 
+            nudDelay.Value = ds.GameDelay;
+
             BalanceStopCheck.Checked = ds.CheckBalance;
             if(ds.BalanceStopAbove == -1)
             {
@@ -133,6 +136,7 @@ namespace Satoshi_GUI
         public DefaultSettings ToDefaultSettings()
         {
             DefaultSettings ds = new DefaultSettings();
+            /*
             ds.BombCount = GameConfig.BombCount;
             ds.PlayerHash = GameConfig.PlayerHash;
             ds.BetAmmount = GameConfig.BetAmmount;
@@ -156,6 +160,17 @@ namespace Satoshi_GUI
             ds.Proxy = GameConfig.Proxy;
             ds.UseProxy = GameConfig.UseProxy;
             ds.MetaSettings = GameConfig.MetaSettings;
+            ds.GameDelay = GameConfig.GameDelay;
+            */
+            Type gType = typeof(GameSettings);
+            foreach(PropertyInfo sProp in typeof(DefaultSettings).GetProperties())
+            {
+                PropertyInfo gProp = gType.GetProperty(sProp.Name);
+                if(gProp != null)
+                {
+                    sProp.SetValue(ds, gProp.GetValue(GameConfig));
+                }
+            }
             return ds;
         }
 
@@ -206,7 +221,9 @@ namespace Satoshi_GUI
             GameConfig.StopAfterWin = stopAfterWinCheck.Checked;
             GameConfig.StopAfterLoss = stopAfterLossCheck.Checked;
             GameConfig.ShowExceptionWindow = showExWindow.Checked;
-            
+
+            GameConfig.GameDelay = (int)nudDelay.Value;
+
             GameConfig.ShowGameBombs = showGBombsCheck.Checked;
             GameConfig.SaveLogToFile = saveLog.Checked;
             GameConfig.ConfigTag = cfgTag.Text;
@@ -214,7 +231,7 @@ namespace Satoshi_GUI
             GameConfig.StopAfterGames = stopAfterGamesChecked.Checked;
             GameConfig.CheckBalance = BalanceStopCheck.Checked;
             GameConfig.BalanceStopAbove = balanceStopOverChecked.Checked ? (int)balanceStopOver.Value : -1;
-            GameConfig.BalanceStopBelow =balanceStopUnderChecked.Checked ? (int)balanceStopUnder.Value : -1;
+            GameConfig.BalanceStopBelow = balanceStopUnderChecked.Checked ? (int)balanceStopUnder.Value : -1;
             GameConfig.MetaSettings = metaChecked.Checked;
             if (GameConfig.MetaSettings)
             {

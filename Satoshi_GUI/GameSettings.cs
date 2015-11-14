@@ -32,5 +32,6 @@ namespace Satoshi_GUI
         public string Proxy { get; set; }
         public bool MetaSettings { get; set; }
         public bool CheckForSquareRepeat { get; set; } = false;
+        public int GameDelay { get; set; }
     }
 }

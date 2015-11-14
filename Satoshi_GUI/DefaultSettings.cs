@@ -35,11 +35,13 @@ namespace Satoshi_GUI
         public bool UseProxy { get; set; }
         public string Proxy { get; set; }
         public bool MetaSettings { get; set; }
+        public int GameDelay { get; set; }
         public DefaultSettings()
         {
             BetCost = 30;
             PercentOnLoss = 100;
             BetAmmount = 3;
+            GameDelay = 0;
         }
     }
 }
