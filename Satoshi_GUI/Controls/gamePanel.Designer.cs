@@ -45,7 +45,7 @@
             // 
             // outputLog
             // 
-            this.outputLog.Location = new System.Drawing.Point(105, 35);
+            this.outputLog.Location = new System.Drawing.Point(105, 37);
             this.outputLog.Name = "outputLog";
             this.outputLog.ReadOnly = true;
             this.outputLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -57,7 +57,7 @@
             // 
             this.winStats.AutoSize = true;
             this.winStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winStats.Location = new System.Drawing.Point(193, 14);
+            this.winStats.Location = new System.Drawing.Point(193, 17);
             this.winStats.Name = "winStats";
             this.winStats.Size = new System.Drawing.Size(145, 16);
             this.winStats.TabIndex = 12;
@@ -67,7 +67,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 14);
+            this.label2.Location = new System.Drawing.Point(132, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 11;
@@ -76,7 +76,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(105, 134);
+            this.button1.Location = new System.Drawing.Point(105, 136);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(340, 33);
             this.button1.TabIndex = 10;
@@ -87,7 +87,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Meiryo", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(6, 134);
+            this.button2.Location = new System.Drawing.Point(6, 136);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 33);
             this.button2.TabIndex = 14;
@@ -107,15 +107,15 @@
             this.gameGroupBox.Controls.Add(this.button2);
             this.gameGroupBox.Controls.Add(this.outputLog);
             this.gameGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.gameGroupBox.Location = new System.Drawing.Point(7, 3);
+            this.gameGroupBox.Location = new System.Drawing.Point(7, 0);
             this.gameGroupBox.Name = "gameGroupBox";
-            this.gameGroupBox.Size = new System.Drawing.Size(451, 176);
+            this.gameGroupBox.Size = new System.Drawing.Size(451, 179);
             this.gameGroupBox.TabIndex = 16;
             this.gameGroupBox.TabStop = false;
             // 
             // liveBitsBox
             // 
-            this.liveBitsBox.Location = new System.Drawing.Point(6, 12);
+            this.liveBitsBox.Location = new System.Drawing.Point(6, 15);
             this.liveBitsBox.Name = "liveBitsBox";
             this.liveBitsBox.ReadOnly = true;
             this.liveBitsBox.Size = new System.Drawing.Size(93, 20);
@@ -134,7 +134,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(105, 12);
+            this.button3.Location = new System.Drawing.Point(105, 15);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(21, 20);
             this.button3.TabIndex = 16;
@@ -146,7 +146,7 @@
             // 
             this.gameSquares.ContextMenuStrip = this.cmManualBet;
             this.gameSquares.GridBorder = true;
-            this.gameSquares.Location = new System.Drawing.Point(6, 35);
+            this.gameSquares.Location = new System.Drawing.Point(6, 37);
             this.gameSquares.Name = "gameSquares";
             this.gameSquares.Size = new System.Drawing.Size(93, 93);
             this.gameSquares.SquareBorder = true;
@@ -156,7 +156,7 @@
             // cmManualBet
             // 
             this.cmManualBet.Name = "cmManualBet";
-            this.cmManualBet.Size = new System.Drawing.Size(153, 26);
+            this.cmManualBet.Size = new System.Drawing.Size(61, 4);
             // 
             // gamePanel
             // 

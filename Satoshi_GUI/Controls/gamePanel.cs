@@ -414,9 +414,14 @@ namespace Satoshi_GUI
                         Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                             GameConfig.BombCount);
                 if (running)
+                {
+                    CheckWait();
                     getPostResponce(newGameresponce, EndNewGameResponce);
+                }
                 else
+                {
                     BSta(true);
+                }
             }
             catch(Exception ex)
             {
@@ -626,11 +631,7 @@ namespace Satoshi_GUI
                                 Bcodes("player_hash={0}&bet={1}&num_mines={2}" + postExtention, GameConfig.PlayerHash, GameConfig.BetCost.ToString("0.000000", new CultureInfo("en-US")),
                                         GameConfig.BombCount);
 
-                        if (GameConfig.GameDelay != 0 && running)
-                        {
-                            Log("Waiting {0}ms...", GameConfig.GameDelay);
-                            Thread.Sleep(GameConfig.GameDelay);
-                        }
+                        CheckWait();
                         if (running)
                         {
                             
@@ -737,6 +738,15 @@ namespace Satoshi_GUI
                 Log("Failed to start new game.");
                 running = false;
                 BSta(true);
+            }
+        }
+
+        void CheckWait()
+        {
+            if (GameConfig.GameDelay != 0 && running)
+            {
+                Log("Waiting {0}ms...", GameConfig.GameDelay);
+                Thread.Sleep(GameConfig.GameDelay);
             }
         }
 
